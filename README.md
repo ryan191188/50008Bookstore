@@ -1,2 +1,3 @@
 # 50008Bookstore
-Web application with a database backend using Django
+Web application with a database backend using Django.
+
