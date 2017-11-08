@@ -24,7 +24,8 @@ urlpatterns = [
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-from mysite.core import views as core_views
+from mysite import views as core_views
+
 
 urlpatterns = [
                url(r'^polls/', include('polls.urls')),
@@ -45,7 +46,7 @@ urlpatterns = [
                
                url(r'^admin/', admin.site.urls),
                
-               url(r'^signup',
+               url(r'^accounts/signup/',
                    core_views.signup, name='signup'),
                
                ]
