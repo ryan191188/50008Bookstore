@@ -26,3 +26,10 @@ def signup(request):
         form = UserCreationForm()
     
     return render(request, 'signup.html', {'form': form})
+
+def search(request):
+    for key in request.GET.keys():
+        print key,":",request.GET[key]
+    # insert SQL query here
+    context = {"results": ["Book 1","Book 2"]} #example results
+    return render(request, 'search.html', context)

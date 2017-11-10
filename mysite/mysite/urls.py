@@ -48,5 +48,8 @@ urlpatterns = [
                
                url(r'^accounts/signup/',
                    core_views.signup, name='signup'),
+
+               url(r'^search/',
+                   core_views.search, name='search')
                
                ]

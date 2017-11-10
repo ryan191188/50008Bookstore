@@ -3,7 +3,7 @@
 <fieldset>
 
 <!-- Form Name -->
-<legend>Form Name</legend>
+<legend>Search</legend>
 
 <!-- Search input-->
 <div class="form-group">
@@ -51,4 +51,12 @@
 
 </fieldset>
 </form>
+<h2>Search Results</h2>
+{% if results %}
+  <ol>
+  {% for book in results %}
+  <li> {{book}} </li>
+  {% endfor %}
+  </ol> 
+{% endif %}
 
