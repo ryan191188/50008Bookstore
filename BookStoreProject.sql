@@ -65,9 +65,11 @@ CHECK (score = 0 or score = 1 or score = 2))
 
 
 -- NEED TO CREATE A TRIGGER TO UPDATE THE BOOK QUANITY WHEN THERE IS AN ORDER OF THAT BOOK
-
-
-
+CREATE TRIGGER update_qty AFTER INSERT ON bookorder 
+	FOR EACH ROW 
+		UPDATE book SET numberOfCopies = numberOfCopies - NEW.quantityOrdered
+        WHERE ISBN13 = NEW.ISBN13
+#DROP TRIGGER IF EXISTS update_qty
 
 
 -- Question 3
@@ -79,7 +81,7 @@ WHERE loginName = "huangwenxin2010@msn.com"
 SELECT BookOrder.*, Book.*
 FROM BookOrder, Book
 WHERE BookOrder.ISBN13 = Book.ISBN13
-AND BookOrder.loginName = "..."
+AND BookOrder.loginName = "huangran1991@yahoo.com"
 
 
 SELECT *
