@@ -1,4 +1,9 @@
 <h1>Logged out</h1>
 
-Click <button type="button">here</button> to login again
+Click <button type="button" id=goToLogin>here</button> to login again
 
+<script type="text/javascript">
+    document.getElementById("goToLogin").onclick = function () {
+        location.href = "../login";
+    };
+</script>
