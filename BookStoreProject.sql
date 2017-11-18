@@ -81,17 +81,18 @@ WHERE loginName = "huangwenxin2010@msn.com"
 SELECT BookOrder.*, Book.*
 FROM BookOrder, Book
 WHERE BookOrder.ISBN13 = Book.ISBN13
-AND BookOrder.loginName = "huangran1991@yahoo.com"
-
+AND BookOrder.loginName = "anupamaanghan2010@yahoo.com"
+#huangran1991@yahoo.com
 
 SELECT *
 FROM FeedbackOnBook
-WHERE FeedbackOnBook.loginName = 'liuzhanpeng2011@msn.com'
+WHERE FeedbackOnBook.loginName = 'anupamaanghan2010@yahoo.com'
+#liuzhanpeng2011@msn.com
 
-SELECT FeedbackOnBook.*
-FROM FeedbackOnBook, RatingFeeback
-WHERE User.loginName = "..."
-AND FeedbackOnBook.loginName= RatingFeeback.userBeingRated
+SELECT RatingFeedback.loginName as PersonWhoRates,RatingFeedback.ratingScore, FeedbackOnBook.*
+FROM FeedbackOnBook, RatingFeedback
+WHERE RatingFeedback.loginName = "anupamaanghan2010@yahoo.com"
+AND FeedbackOnBook.loginName= RatingFeedback.userBeingRated
 
 -- QUESTION 4
 
@@ -112,61 +113,68 @@ INSERT INTO RatingFeeback (loginName,ratingScore,userBeingRated,ISBN13)
 VALUES (...)
 
 -- QUESTION 8 PART a
-SELECT ISBN13, year
+SELECT ISBN13, title, Book.year
 FROM Book
-WHERE title = "..."
-AND/OR authors = "..."
-AND/OR publisher = "..."
-AND/OR bookSubject = "..."
-GROUP BY year
+WHERE -- title = "A Beginner s Guide to Constructing the Universe: The Mathematical Archetypes of Nature, Art, and Science"
+-- AND/OR authors = "Shon Harris"
+-- AND/OR publisher = "..."
+bookSubject = "Mathematics"
+ORDER BY Book.year
 
--- QUESTION 8 PART a
+-- QUESTION 8 PART b
 SELECT B.ISBN13, AVG(FeedbackOnBook.feedbackScore)
 FROM Book B, FeedbackOnBook
-WHERE Book.ISBN13 = FeedbackOnBook.ISBN13
-AND B.title = "..."
-AND/OR B.authors = "..."
-AND/OR B.publisher = "..."
-AND/OR B.bookSubject = "..."
+WHERE B.ISBN13 = FeedbackOnBook.ISBN13
+-- AND B.title = "..."
+-- AND/OR B.authors = "..."
+-- AND/OR B.publisher = "..."
+AND B.bookSubject = "Mathematics"
 GROUP BY B.ISBN13
 
 -- QUESTION 9
-CREATE VIEW AverageScoreOfFeedback AS
-(SELECT userBeingRated, AVG(ratingScore)
-FROM RatingFeeback
-WHERE ISBN13 = '...'
-GROUP BY userBeingRated)
-
-CREATE VIEW userBeingRatedOnly AS
-(SELECT userBeingRated
-FROM AverageScoreOfFeedback)
-
-SELECT F.loginName, F.feedbackScore, F.feedbackText
-FROM userBeingRatedOnly U, FeedbackOnBook F
-Where U.userBeingRated = F.loginName
-And F.ISBN13 = '...'
+select F.*
+From FeedbackOnBook F, (select T.userBeingrated,T.ISBN13,avg(T.ratingScore)
+						from (select R.*
+							From FeedbackOnbook F, ratingFeedback R
+							Where F.ISBN13 = R.ISBN13) as T
+						where T.ISBN13 = '978-0735627086'
+						group by T.userBeingRated
+						DESC
+						limit 5) as T2
+where F.loginName = T2.userBeingRated
+And F.ISBN13 = T2.ISBN13
 
 
 
 -- QUESTION 11
-SELECT ISBN13
-FROM (SELECT ISBN13, SUM(quantityOrdered)
+SELECT T3.ISBN13
+FROM (SELECT ISBN13, SUM(quantityOrdered) AS totalQuantitySold
 FROM BookOrder
-WHERE orderDate LIKE 'YYYY-MM'
-GROUP BY ISBN13)
-LIMIT m
+WHERE orderDate like '2017-01%'
+GROUP BY ISBN13
+ORDER BY totalQuantitySold
+DESC ) as T3
+LIMIT 5
 
 
 SELECT authors
 FROM Book
-WHERE Book.ISBN13 in (SELECT ISBN13, SUM(quantityOrdered)
+WHERE Book.ISBN13 in (SELECT T4.ISBN13
+					FROM (SELECT ISBN13, SUM(quantityOrdered) AS totalQuantitySold
                     FROM BookOrder
-                    WHERE orderDate LIKE 'YYYY-MM'
-                    GROUP BY ISBN13)
+                    WHERE orderDate LIKE '2017-01%'
+                    GROUP BY ISBN13
+                    ORDER BY totalQuantitySold DESC) AS T4)
+LIMIT 2
 
-SELECT publishers
+
+
+SELECT publisher
 FROM Book
-WHERE Book.ISBN13 in (SELECT ISBN13, SUM(quantityOrdered)
+WHERE Book.ISBN13 in (SELECT T5.ISBN13
+					FROM (SELECT ISBN13, SUM(quantityOrdered) AS totalQuantitySold
                     FROM BookOrder
-                    WHERE orderDate LIKE 'YYYY-MM'
-                    GROUP BY ISBN13)
+                    WHERE orderDate LIKE '2017-01%'
+                    GROUP BY ISBN13
+                    ORDER BY totalQuantitySold DESC) AS T5)
+LIMIT 2
