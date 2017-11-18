@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 #from django.shortcuts import render
 
 # Create your views here.
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect, render_to_response
 
@@ -26,6 +26,10 @@ def signup(request):
         form = UserCreationForm()
     
     return render(request, 'signup.html', {'form': form})
+
+def logout(request):
+    logout(request)
+    return redirect('/accounts/login/')
 
 def search(request):
     for key in request.GET.keys():

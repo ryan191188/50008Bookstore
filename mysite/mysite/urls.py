@@ -37,11 +37,12 @@ urlpatterns = [
                    'template_name': 'login.html'
                    },
                    name='login'
-                   ,
-                   
-               ),
+                   ,),
                url(r'^accounts/logout/',
                    auth_views.logout,
+                   {
+                   'template_name': 'logout.html'
+                   },
                    name='logout'),
                
                url(r'^admin/', admin.site.urls),
