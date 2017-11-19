@@ -198,4 +198,11 @@ INSERT INTO FeedbackOnBook VALUES
 ('chewsoennam1989@msn.com', '978-0071701334', 6, 'Meet my expectation', '2004-07-14'),
 ('dinggekping1991@msn.com', '978-0887275333', 7, 'Nice one', '2003-06-19'),
 ('zhangzhanpeng1992@hotmail.com', '978-0195103700', 5, 'Not bad', '2008-12-13'),
-('tanchenghan1990@msn.com', '978-0071602174', 9, 'Recommended', '2006-03-27')
+('tanchenghan1990@msn.com', '978-0071602174', 9, 'Recommended', '2006-03-27'),
+('tanchenghan1990@msn.com', '978-0201531817', 4, 'so so', '2014-02-01'),
+('zhangzhanpeng1992@hotmail.com', '978-0201531817', 3, 'Bad book', '2013-02-02'),
+('shenwanting2011@yahoo.com', '978-0201531817', 2, '', '2003-01-01'),
+('liewlienler2010@yahoo.com', '978-0201531817', 10, 'Perfect', '2015-03-02'),
+('dennisbeckham1989@msn.com', '978-0201531817', 7, '', '2015-05-02'),
+('qinyuwei2011@hotmail.com', '978-0201531817', 4, 'Pretty bad', '2016-02-02'),
+('dinggekping1991@msn.com', '978-0201531817', 7, 'Nice one', '2003-06-19')
