@@ -37,3 +37,6 @@ def search(request):
     # insert SQL query here
     context = {"results": ["Book 1","Book 2"]} #example results
     return render(request, 'search.html', context)
+
+
+

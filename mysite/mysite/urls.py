@@ -28,8 +28,7 @@ from mysite import views as core_views
 
 
 urlpatterns = [
-               url(r'^polls/', include('polls.urls')),
-               
+               url(r'^polls/', include('polls.urls')),             
                
                url(r'^accounts/login/',
                    auth_views.login,
@@ -38,6 +37,7 @@ urlpatterns = [
                    },
                    name='login'
                    ,),
+
                url(r'^accounts/logout/',
                    auth_views.logout,
                    {
