@@ -1,0 +1,6 @@
+<h2>Book List</h2>
+	{% for book in object_list %}
+		<a href="{% url 'books:detail' book.id %}">
+			{{book.title}}: {{book.writer}}
+		</a><br>
+	{% endfor %}

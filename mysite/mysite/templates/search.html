@@ -68,7 +68,15 @@
 {% if results %}
   <ol>
   {% for book in results %}
-  <li> {{book}} </li>
+  <li>
+	<a href = "../books/{{book.9}}" >{{ book.0 }}</a><br>  <! TITLE>		
+	{{ book.4 }}<br>  <! AUTHOR>   
+	{{ book.5 }}<br>  <! PUBLISHER>
+	{{ book.6 }}<br>  <! SUBJECT>
+	{{ book.7 }}<br>  <! YEAR>
+<!-- QUERY LANGUAGE TO GET SCORE BY REFERENCING ANOTHER SUBTABLE -->
+    
+ </li>
   {% endfor %}
   </ol> 
 {% endif %}

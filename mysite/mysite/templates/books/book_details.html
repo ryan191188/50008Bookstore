@@ -1,0 +1,13 @@
+{% if book %}
+<h2> Books Details</h2>
+<h4> Title: {{object.title}} </h4><!INSERT QUERY LANGUAGE>
+<p> Writer: {{object.writer}} </p><!INSERT QUERY LANGUAGE>
+<p> Descritption: {{object.descritption}} </p><!INSERT QUERY LANGUAGE>
+<p> Price: {{object.price}} </p><!INSERT QUERY LANGUAGE>
+<a href="{% url 'books:list' %}">Back to List</a>
+
+
+{% else %}
+<h2> Book Not Found </h2>
+
+{% endif %}

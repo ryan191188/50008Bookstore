@@ -28,8 +28,8 @@ from mysite import views as core_views
 
 
 urlpatterns = [
-               url(r'^polls/', include('polls.urls')),             
-               
+               url(r'^books/(?:[0-9]{3}-)?[0-9]{10}$', core_views.books, name = 'books' ),             
+               #^(?P<pk>\d+)
                url(r'^accounts/login/',
                    auth_views.login,
                    {
@@ -38,6 +38,7 @@ urlpatterns = [
                    name='login'
                    ,),
 
+	       #logged in 
                url(r'^accounts/logout/',
                    auth_views.logout,
                    {
@@ -48,9 +49,6 @@ urlpatterns = [
 
 	       url(r'^accounts/order/',
 		   core_views.orders,
-		   {
-		   'template_name': 'order.html'
-                   },
                    name='order'),
 	       
                url(r'^admin/', admin.site.urls),

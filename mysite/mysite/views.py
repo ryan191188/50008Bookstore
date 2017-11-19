@@ -35,14 +35,14 @@ def search(request):
     for key in request.GET.keys():
         print key,":",request.GET[key]
     # insert SQL query here
-    context = {"results": ["Book 1","Book 2"]} #example results
+    context = {"results": (('Photoshop Elements 9: The Missing Manual', 'paperback', '640', 'English', 'Barbara Brundage', 'Pogue Press', 'Science', '2010', '1449389678', '978-1449389673', 40),('Where Good Ideas Come From: The Natural History of Innovation', 'hardcover', '336', 'English', 'Steven Johnson', 'Riverhead Hardcover', 'Biology', '2010', '1594487715', '978-1594487712', 46))} #example results
     return render(request, 'search.html', context)
 
 def orders(request):
 	args = {}
-	args.update(csrf(request))
-	args['error'] = ""
-	args['ProductOrderForm'] = ProductOrderForm()
+	#args.update(csrf(request))
+	#args['error'] = ""
+	#args['ProductOrderForm'] = ProductOrderForm()
 
 	if request.method == 'POST':
 
@@ -61,4 +61,15 @@ def orders(request):
 			render(request, 'store/order_form.html', args)
 
 	return render(request, 'store/order_form.html', args)
+
+def books(request):
+	args = {}
+	print (request.path).split('/')[2]  ##this is the ISBN13 number used to query
+	##INSERT SQL QUERY HERE
+	return render(request, 'books/book_details.html',args)
+
+
+
+
+
 
