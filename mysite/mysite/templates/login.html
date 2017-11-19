@@ -4,5 +4,11 @@
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Login</button>
-     <button type="submit">Signup</button>
   </form>
+  <button type="button" id=goToSignup>Signup</button>
+
+  <script type="text/javascript">
+    document.getElementById("goToSignup").onclick = function () {
+        location.href = "../signup";
+    };
+  </script>
