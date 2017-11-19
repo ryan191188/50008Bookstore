@@ -17,8 +17,8 @@ def signup(request):
             form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
-            #user = authenticate(username=username, password=raw_password)
-            #login(request, user)
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
 	    messages.info(request, 'User created!')
             return redirect('/accounts/login') #Create a new page late
 	
@@ -32,6 +32,7 @@ def logout(request):
     return redirect('/accounts/login/')
 
 def search(request):
+    print (request.user.username)
     for key in request.GET.keys():
         print key,":",request.GET[key]
     # insert SQL query here
