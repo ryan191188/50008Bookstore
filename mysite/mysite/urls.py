@@ -46,7 +46,7 @@ urlpatterns = [
                    name='logout'),
                
 
-	       url(r'^accounts/orders/',
+	       url(r'^accounts/order/',
 		   core_views.orders,
 		   {
 		   'template_name': 'order.html'
