@@ -45,12 +45,21 @@ urlpatterns = [
                    },
                    name='logout'),
                
+
+	       url(r'^accounts/orders/',
+		   core_views.orders,
+		   {
+		   'template_name': 'order.html'
+                   },
+                   name='order'),
+	       
                url(r'^admin/', admin.site.urls),
                
                url(r'^accounts/signup/',
-                   core_views.signup, name='signup'),
+                   core_views.signup, 
+		   name='signup'),
 
                url(r'^search/',
-                   core_views.search, name='search')
-               
+                   core_views.search, 
+		   name='search')               
                ]

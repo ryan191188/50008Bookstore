@@ -38,5 +38,27 @@ def search(request):
     context = {"results": ["Book 1","Book 2"]} #example results
     return render(request, 'search.html', context)
 
+def orders(request):
+	args = {}
+	args.update(csrf(request))
+	args['error'] = ""
+	args['ProductOrderForm'] = ProductOrderForm()
 
+	if request.method == 'POST':
+
+		order = Order(user=request.user.storeuser, paid=False)
+		order.save()
+		product_order = ProductOrder(order=order)
+		form = ProductOrderForm(request.POST, instance=product_order)
+
+		if form.is_valid():
+			form.save()
+			args['order_id'] = order.pk
+			return render(request, 'store/orders_more.html', args)
+		else:
+			order.delete()
+			args['error'] = "Order Submission Failed!"
+			render(request, 'store/order_form.html', args)
+
+	return render(request, 'store/order_form.html', args)
 
