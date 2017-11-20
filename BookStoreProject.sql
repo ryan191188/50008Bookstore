@@ -85,11 +85,17 @@ AND BookOrder.loginName = "anupamaanghan2010@yahoo.com"
 SELECT *
 FROM FeedbackOnBook
 WHERE FeedbackOnBook.loginName = 'anupamaanghan2010@yahoo.com'
+Order by feedbackDate
+DESC
+
 
 SELECT RatingFeedback.loginName as PersonWhoRates,RatingFeedback.ratingScore, FeedbackOnBook.*
 FROM FeedbackOnBook, RatingFeedback
 WHERE RatingFeedback.loginName = "anupamaanghan2010@yahoo.com"
 AND FeedbackOnBook.loginName= RatingFeedback.userBeingRated
+Order by feedbackDate
+DESC
+
 
 -- QUESTION 4
 
@@ -98,8 +104,13 @@ VALUES (...)
 
 -- QUESTION 5
 UPDATE BOOK
-SET Book.numberOfCopies = ...
-WHERE Book.ISBN13 = "..."
+SET Book.numberOfCopies = Book.numberOfCopies + 2
+WHERE Book.ISBN13 = "978-0195168075"
+
+
+
+
+
 
 -- QUESTION 6
 INSERT INTO FeedbackOnBook (loginName,ISBN13,feedbackScore,feedbackText,feedbackDate)
@@ -127,6 +138,7 @@ WHERE B.ISBN13 = FeedbackOnBook.ISBN13
 -- AND/OR B.publisher = "..."
 AND B.bookSubject = "Mathematics"
 GROUP BY B.ISBN13
+Order by AVG(FeedbackOnBook.feedbackScore)
 
 -- QUESTION 9
 
@@ -136,12 +148,14 @@ From FeedbackOnBook F, (select T.userBeingrated,T.ISBN13,avg(T.ratingScore)
 						from (select R.*
 							From FeedbackOnbook F, ratingFeedback R
 							Where F.ISBN13 = R.ISBN13) as T
-						where T.ISBN13 = '978-0735627086'
+						where T.ISBN13 = '978-0201531817'
 						group by T.userBeingRated
-						DESC
-						limit 5) as T2
+                        ORDER BY avg(T.ratingScore)
+						DESC) as T2
 where F.loginName = T2.userBeingRated
 And F.ISBN13 = T2.ISBN13
+limit 5
+
 
 
 
@@ -151,7 +165,7 @@ And F.ISBN13 = T2.ISBN13
 SELECT T3.ISBN13
 FROM (SELECT ISBN13, SUM(quantityOrdered) AS totalQuantitySold
 FROM BookOrder
-WHERE orderDate like '2017-01%'
+WHERE orderDate like '2015-08%'
 GROUP BY ISBN13
 ORDER BY totalQuantitySold
 DESC ) as T3
@@ -163,10 +177,10 @@ FROM Book
 WHERE Book.ISBN13 in (SELECT T4.ISBN13
 					FROM (SELECT ISBN13, SUM(quantityOrdered) AS totalQuantitySold
                     FROM BookOrder
-                    WHERE orderDate LIKE '2017-01%'
+                    WHERE orderDate LIKE '2015-08%'
                     GROUP BY ISBN13
                     ORDER BY totalQuantitySold DESC) AS T4)
-LIMIT 2
+LIMIT 5
 
 
 
@@ -175,7 +189,16 @@ FROM Book
 WHERE Book.ISBN13 in (SELECT T5.ISBN13
 					FROM (SELECT ISBN13, SUM(quantityOrdered) AS totalQuantitySold
                     FROM BookOrder
-                    WHERE orderDate LIKE '2017-01%'
+                    WHERE orderDate LIKE '2015-08%'
                     GROUP BY ISBN13
                     ORDER BY totalQuantitySold DESC) AS T5)
-LIMIT 2
+LIMIT 5
+
+
+
+
+
+
+select *
+From RatingFeedback
+where loginName = userBeingRated
