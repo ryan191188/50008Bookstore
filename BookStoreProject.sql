@@ -82,12 +82,20 @@ SELECT BookOrder.*, Book.*
 FROM BookOrder, Book
 WHERE BookOrder.ISBN13 = Book.ISBN13
 AND BookOrder.loginName = "anupamaanghan2010@yahoo.com"
-#huangran1991@yahoo.com
+
+#alternative - Ryan (remove ISBN13 & numberOfCopies)
+/*
+SELECT BookOrder.*,
+Book.title, Book.format, Book.pages, Book.language,
+Book.authors, Book.publisher, Book.bookSubject, Book.ISBN10
+FROM BookOrder, Book
+WHERE BookOrder.ISBN13 = Book.ISBN13
+AND BookOrder.loginName = "anupamaanghan2010@yahoo.com"
+*/
 
 SELECT *
 FROM FeedbackOnBook
 WHERE FeedbackOnBook.loginName = 'anupamaanghan2010@yahoo.com'
-#liuzhanpeng2011@msn.com
 
 SELECT RatingFeedback.loginName as PersonWhoRates,RatingFeedback.ratingScore, FeedbackOnBook.*
 FROM FeedbackOnBook, RatingFeedback
