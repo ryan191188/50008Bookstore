@@ -65,11 +65,9 @@ CHECK (score = 0 or score = 1 or score = 2))
 
 
 -- NEED TO CREATE A TRIGGER TO UPDATE THE BOOK QUANITY WHEN THERE IS AN ORDER OF THAT BOOK
-CREATE TRIGGER update_qty AFTER INSERT ON bookorder 
-	FOR EACH ROW 
-		UPDATE book SET numberOfCopies = numberOfCopies - NEW.quantityOrdered
-        WHERE ISBN13 = NEW.ISBN13
-#DROP TRIGGER IF EXISTS update_qty
+
+
+
 
 
 -- Question 3
@@ -78,16 +76,15 @@ FROM User
 WHERE loginName = "huangwenxin2010@msn.com"
 
 
-SELECT BookOrder.*, Book.*
+SELECT BookOrder.*, Book.title
 FROM BookOrder, Book
 WHERE BookOrder.ISBN13 = Book.ISBN13
 AND BookOrder.loginName = "anupamaanghan2010@yahoo.com"
-#huangran1991@yahoo.com
+
 
 SELECT *
 FROM FeedbackOnBook
 WHERE FeedbackOnBook.loginName = 'anupamaanghan2010@yahoo.com'
-#liuzhanpeng2011@msn.com
 
 SELECT RatingFeedback.loginName as PersonWhoRates,RatingFeedback.ratingScore, FeedbackOnBook.*
 FROM FeedbackOnBook, RatingFeedback
@@ -132,6 +129,8 @@ AND B.bookSubject = "Mathematics"
 GROUP BY B.ISBN13
 
 -- QUESTION 9
+
+
 select F.*
 From FeedbackOnBook F, (select T.userBeingrated,T.ISBN13,avg(T.ratingScore)
 						from (select R.*
@@ -143,6 +142,8 @@ From FeedbackOnBook F, (select T.userBeingrated,T.ISBN13,avg(T.ratingScore)
 						limit 5) as T2
 where F.loginName = T2.userBeingRated
 And F.ISBN13 = T2.ISBN13
+
+
 
 
 
