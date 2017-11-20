@@ -4,3 +4,22 @@
 
 <!-- Form Name -->
 <legend>User Data</legend>
+<h2>Search Results</h2>
+{% if results %}
+  <ol>
+  {% for book in results %}
+  <li>
+	<a href = "../books/{{book.9}}" >{{ book.0 }}</a><br>  <! TITLE>		
+	{{ book.4 }}<br>  <! AUTHOR>   
+	{{ book.5 }}<br>  <! PUBLISHER>
+	{{ book.6 }}<br>  <! SUBJECT>
+	{{ book.7 }}<br>  <! YEAR>
+<!-- QUERY LANGUAGE TO GET SCORE BY REFERENCING ANOTHER SUBTABLE -->
+    
+ </li>
+  {% endfor %}
+  </ol> 
+{% endif %}
+
+</fieldset>
+</form>

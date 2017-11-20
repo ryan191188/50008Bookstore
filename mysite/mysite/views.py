@@ -32,7 +32,7 @@ def logout(request):
     return redirect('/accounts/login/')
 
 def search(request):
-    print (request.user.username)
+
     for key in request.GET.keys():
         print key,":",request.GET[key]
     # insert SQL query here
@@ -64,13 +64,14 @@ def orders(request):
 	return render(request, 'store/order_form.html', args)
 
 def books(request):
-	args = {}
+	args = {'book':('Photoshop Elements 9: The Missing Manual', 'paperback', '640', 'English', 'Barbara Brundage', 'Pogue Press', 'Science', '2010', '1449389678', '978-1449389673', 40)}  #tuple that contains info on all the books. REPLACE THE TUPLE WITH A QUERY LANGUAGE TO GET THE BOOK. SHOULD GET THE ROWS
+#NEED TO DO HTML FOR 'book' TO DO BOOK DETAILS
 	print (request.path).split('/')[2]  ##this is the ISBN13 number used to query
-	##INSERT SQL QUERY HERE
 	return render(request, 'books/book_details.html',args)
 
-
-
+def userdata(request):
+	print (request.user.username)
+	
 
 
 
