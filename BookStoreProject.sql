@@ -65,9 +65,11 @@ CHECK (score = 0 or score = 1 or score = 2))
 
 
 -- NEED TO CREATE A TRIGGER TO UPDATE THE BOOK QUANITY WHEN THERE IS AN ORDER OF THAT BOOK
-
-
-
+CREATE TRIGGER update_qty AFTER INSERT ON bookorder 
+	FOR EACH ROW 
+		UPDATE book SET numberOfCopies = numberOfCopies - NEW.quantityOrdered
+        WHERE ISBN13 = NEW.ISBN13
+#DROP TRIGGER IF EXISTS update_qty
 
 
 -- Question 3
@@ -150,7 +152,7 @@ From FeedbackOnBook F, (select T.userBeingrated,T.ISBN13,avg(T.ratingScore)
 							Where F.ISBN13 = R.ISBN13) as T
 						where T.ISBN13 = '978-0201531817'
 						group by T.userBeingRated
-                        ORDER BY avg(T.ratingScore)
+						ORDER BY avg(T.ratingScore)
 						DESC) as T2
 where F.loginName = T2.userBeingRated
 And F.ISBN13 = T2.ISBN13
