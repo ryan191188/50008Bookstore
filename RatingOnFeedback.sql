@@ -210,4 +210,3 @@ INSERT INTO RatingFeedback VALUES
 ('gohengchye1992@msn.com', 'liewlienler2010@yahoo.com', '978-0201531817', 1),
 ('liujun1989@msn.com', 'subramaniamghantasala2011@msn.com', '978-0201531817', 1),
 ('leeyijia1989@gmail.com', 'tanchenghan1990@msn.com', '978-0201531817', 0)
-
