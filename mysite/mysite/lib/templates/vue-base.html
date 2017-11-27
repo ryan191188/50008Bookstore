@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block css %}
+{{ block.super }}
+<link href='//fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet" type="text/css">
+<link href="//unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet" type="text/css"></link>
+{% endblock %}
+
+{% block javascript %}
+{{ block.super }}
+<script src="//unpkg.com/vue"></script>
+<script src="//unpkg.com/axios/dist/axios.min.js"></script>
+<script src="//unpkg.com/vuetify/dist/vuetify.js"></script>
+<script src="//unpkg.com/vue-router/dist/vue-router.js"></script>
+<script src="//unpkg.com/moment"></script>
+{% endblock %}
+
+{% block content %}
+{{ block.super }}
+{% url 'index' as index_url %}
+<v-app id="app" dark>
+  {% block v-nav %}
+  <v-toolbar app fixed clipped-left>
+    <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+    <v-toolbar-title>Solid Eureka</v-toolbar-title>
+    {% if request.get_full_path == index_url %}
+    <v-spacer></v-spacer>
+    <v-btn icon>
+      <v-icon>search</v-icon>
+    </v-btn>
+    {% endif %}
+  </v-toolbar>
+  <v-navigation-drawer clipped fixed app v-model="drawer">
+    <v-list dense>
+      {% if user.is_authenticated %}
+      <v-list-group :value="usergp.active">
+        <v-list-tile slot="item">
+          <v-list-tile-action>
+            <v-icon>account_circle</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>{{ user.username }}</v-list-tile-title>
+          </v-list-tile-content>
+          <v-list-tile-action>
+            <v-icon>keyboard_arrow_down</v-icon>
+          </v-list-tile-action>
+        </v-list-tile>
+        <v-list-tile v-for="i in usergp.list" :key="i.title" :href="i.link">
+          <v-list-tile-action>
+            <v-icon>[ i.action ]</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>[ i.title ]</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list-group>
+      {% else %}
+      <v-list-tile avatar href="{% url 'login' %}">
+        <v-list-tile-action>
+          <v-icon>account_circle</v-icon>
+        </v-list-tile-action>
+        <v-list-tile-content>
+          <v-list-tile-title>Sign In</v-list-tile-title>
+        </v-list-tile-content>
+      </v-list-tile>
+      {% endif %}
+      <v-divider></v-divider>
+      <v-list-tile v-for="i in routes" :key="i.title"
+      {% if request.get_full_path == index_url %}
+        :to="i.path"
+      {% else %}
+        :href="'{{ index_url }}#'+i.path"
+      {% endif %}
+      >
+        <v-list-tile-action>
+          <v-icon>[ i.action ]</v-icon>
+        </v-list-tile-action>
+        <v-list-tile-content>
+          <v-list-tile-title>[ i.title ]</v-list-tile-title>
+        </v-list-tile-content>
+      </v-list-tile>
+    </v-list>
+  </v-navigation-drawer>
+  {% endblock %}
+  <v-content>
+  {% block v-content %}
+  {% endblock %}
+  </v-content>
+</v-app>
+{% block v-script %}
+<script src="{% static 'js/app.js' %}"></script>
+<script>
+options.data.usergp.list = [
+  {
+    'link': "{% url 'profile' %}",
+    'title': 'Profile',
+    'action': 'home'
+  },
+  {% if user.is_staff %}
+  {
+    'link': "{% url 'admin' %}",
+    'title': 'Manager',
+    'action': 'dashboard'
+  },
+  {% endif %}
+  {
+    'link': "{% url 'logout' %}",
+    'title': 'Sign Out',
+    'action': 'exit_to_app'
+  }
+];
+</script>
+{% endblock %}
+{% block vue %}<script>new Vue(options);</script>{% endblock %}
+{% endblock %}
