@@ -64,5 +64,5 @@ urlpatterns = [
 		#user info
 	       url(r'user/.$/',
 		   core_views.userdata,
-		   name = user)	             
+		   name = 'user')	             
                ]
