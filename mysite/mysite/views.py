@@ -4,11 +4,14 @@ from __future__ import unicode_literals
 #from django.shortcuts import render
 
 # Create your views here.
+from django.core.exceptions import PermissionDenied
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect, render_to_response
+from django.contrib.auth.decorators import login_required
 
 from django.contrib import messages
+
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -69,8 +72,14 @@ def books(request):
 	print (request.path).split('/')[2]  ##this is the ISBN13 number used to query
 	return render(request, 'books/book_details.html',args)
 
+@login_required
 def userdata(request):
-	print (request.user.username)
+    if not request.user.username==request.path.split('/')[2]:
+        raise PermissionDenied('NOT LOGGED IN')
+    args={}
+    return render(request, 'users.html',args)
+
+
 	
 
 

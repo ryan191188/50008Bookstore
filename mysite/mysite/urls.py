@@ -62,7 +62,7 @@ urlpatterns = [
                    core_views.search, 
 		   name='search'),
 		#user info
-	       url(r'user/.$/',
+	       url(r'^user/',
 		   core_views.userdata,
-		   name = user)	             
+		   name = 'user')	             
                ]
