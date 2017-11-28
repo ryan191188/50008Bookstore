@@ -48,9 +48,9 @@ urlpatterns = [
                    name='logout'),
                
 
-	       url(r'^accounts/order/',
-		   core_views.orders,
-                   name='order'),
+	    #    url(r'^accounts/order/',
+		   # core_views.orders,
+     #               name='order'),
 	       
                url(r'^admin/', admin.site.urls),
                

@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 #from django.shortcuts import render
 
 # Create your views here.
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect, render_to_response
@@ -44,40 +45,40 @@ def search(request):
     context = {"results": (('Photoshop Elements 9: The Missing Manual', 'paperback', '640', 'English', 'Barbara Brundage', 'Pogue Press', 'Science', '2010', '1449389678', '978-1449389673', 40),('Where Good Ideas Come From: The Natural History of Innovation', 'hardcover', '336', 'English', 'Steven Johnson', 'Riverhead Hardcover', 'Biology', '2010', '1594487715', '978-1594487712', 46))} #example results
     return render(request, 'search.html', context)
 
-@json_response
-def orders(request):
+# @json_response
+# def orders(request):
 
-    """Get order history of logged-in user."""
-    if not request.user.is_authenticated:
-        raise PermissionDenied(NOT_LOGGED_IN)
+#     """Get order history of logged-in user."""
+#     if not request.user.is_authenticated:
+#         raise PermissionDenied(NOT_LOGGED_IN)
 
-    query = ''#sql query here
-    pg = pagination(request)
+#     query = ''#sql query here
+#     pg = pagination(request)
 
-    for row in sql(q + page(**pg), request.user.id):
-        yield order.__wrapped__(request, details=row)
+#     for row in sql(q + page(**pg), request.user.id):
+#         yield order.__wrapped__(request, details=row)
 
-    args = {}
-    #args.update(csrf(request))
-    #args['error'] = ""
-    #args['ProductOrderForm'] = ProductOrderForm()
+#     args = {}
+#     #args.update(csrf(request))
+#     #args['error'] = ""
+#     #args['ProductOrderForm'] = ProductOrderForm()
 
-    if request.method == 'POST':
+#     if request.method == 'POST':
 
-        order = Order(user=request.user.storeuser, paid=False)
-        order.save()
-        product_order = ProductOrder(order=order)
-        form = ProductOrderForm(request.POST, instance=product_order)
-        if form.is_valid():
-            form.save()
-            args['order_id'] = order.pk
-            return render(request, 'store/orders_more.html', args)
-        else:
-            order.delete()
-            args['error'] = "Order Submission Failed!"
-            render(request, 'store/order_form.html', args)
+#         order = Order(user=request.user.storeuser, paid=False)
+#         order.save()
+#         product_order = ProductOrder(order=order)
+#         form = ProductOrderForm(request.POST, instance=product_order)
+#         if form.is_valid():
+#             form.save()
+#             args['order_id'] = order.pk
+#             return render(request, 'store/orders_more.html', args)
+#         else:
+#             order.delete()
+#             args['error'] = "Order Submission Failed!"
+#             return render(request, 'store/order_form.html', args)
 
-    return render(request, 'store/order_form.html', args)
+#     return render(request, 'store/order_form.html', args)
 
 
 def books(request):
