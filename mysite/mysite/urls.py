@@ -74,6 +74,11 @@ urlpatterns = [
 		   core_views.userfeedback,
 		   name = 'userfeedback'),
 
+		   url(r'^user/.+/ratings',
+		   core_views.userratings,
+		   name = 'userratings'),
+
+
 		   url(r'^newbook',
 		   core_views.newbook,
 		   name = 'newbook'), 

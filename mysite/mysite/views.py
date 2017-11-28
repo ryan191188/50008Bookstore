@@ -18,15 +18,15 @@ from lib.decorators import json_response
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
-    print (form.is_valid())
-    if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            messages.info(request, 'User created!')
-            return redirect('/accounts/login') #Create a new page late
+    #print (form.is_valid())
+        if form.is_valid():
+                form.save()
+                username = form.cleaned_data.get('username')
+                raw_password = form.cleaned_data.get('password1')
+                user = authenticate(username=username, password=raw_password)
+                login(request, user)
+                messages.info(request, 'User created!')
+                return redirect('/accounts/login') #Create a new page late
 
     else:
         form = UserCreationForm()
@@ -117,6 +117,14 @@ def userfeedback(request):
     args={}
     args['results'] = (('Today', 'booktitle'),('date','anothrbook'))
     return render(request, 'user_feedback.html',args)
+
+@login_required
+def userratings(request):
+    if not request.user.username==request.path.split('/')[2]:
+        raise PermissionDenied('NOT LOGGED IN')
+    args={}
+    args['results'] = (('Today', 'booktitle'),('date','anothrbook'))
+    return render(request, 'user_ratings.html',args)
 
 @login_required
 def newbook(request):
