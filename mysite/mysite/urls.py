@@ -62,7 +62,23 @@ urlpatterns = [
                    core_views.search, 
 		   name='search'),
 		#user info
-	       url(r'^user/',
+	       url(r'^user/.+/profile',
 		   core_views.userdata,
-		   name = 'user')	             
+		   name = 'user'),
+
+		   url(r'^user/.+/orders',
+		   core_views.userorders,
+		   name = 'userorders'), 
+
+		   url(r'^user/.+/feedback',
+		   core_views.userfeedback,
+		   name = 'userfeedback'),
+
+		   url(r'^newbook',
+		   core_views.newbook,
+		   name = 'newbook'), 
+
+		   url(r'^arrivebook',
+		   core_views.arrivebook,
+		   name = 'arrivebook')         
                ]

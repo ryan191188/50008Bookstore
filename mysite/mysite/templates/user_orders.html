@@ -1,4 +1,4 @@
-<h2>User</h2>
+<h2>User Orders</h2>
 
 
 <button type="button" id=goToProfile>Profile</button>
@@ -30,5 +30,16 @@
     };
 </script>
 
-
-
+{% if results %}
+  <ol>
+  {% for order in results %}
+  <li>
+    {{ order.0 }}<br>  <! DATE>   
+    <a href = "../../books/{{book.9}}" >{{ order.1 }}</a><br>  <! TITLE>        
+    
+<!-- QUERY LANGUAGE TO GET SCORE BY REFERENCING ANOTHER SUBTABLE -->
+    
+ </li>
+  {% endfor %}
+  </ol> 
+{% endif %}

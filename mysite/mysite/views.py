@@ -11,6 +11,8 @@ from django.shortcuts import render, redirect, render_to_response
 from django.contrib.auth.decorators import login_required
 
 from django.contrib import messages
+from lib.utils import pagination
+from lib.decorators import json_response
 
 def signup(request):
     if request.method == 'POST':
@@ -42,35 +44,30 @@ def search(request):
     context = {"results": (('Photoshop Elements 9: The Missing Manual', 'paperback', '640', 'English', 'Barbara Brundage', 'Pogue Press', 'Science', '2010', '1449389678', '978-1449389673', 40),('Where Good Ideas Come From: The Natural History of Innovation', 'hardcover', '336', 'English', 'Steven Johnson', 'Riverhead Hardcover', 'Biology', '2010', '1594487715', '978-1594487712', 46))} #example results
     return render(request, 'search.html', context)
 
+@json_response
 def orders(request):
-	args = {}
-	#args.update(csrf(request))
-	#args['error'] = ""
-	#args['ProductOrderForm'] = ProductOrderForm()
+    """Get order history of logged-in user."""
+    if not request.user.is_authenticated:
+        raise PermissionDenied(NOT_LOGGED_IN)
 
-	if request.method == 'POST':
+    query = ''#sql query here
+    pg = pagination(request)
 
-		order = Order(user=request.user.storeuser, paid=False)
-		order.save()
-		product_order = ProductOrder(order=order)
-		form = ProductOrderForm(request.POST, instance=product_order)
-
-		if form.is_valid():
-			form.save()
-			args['order_id'] = order.pk
-			return render(request, 'store/orders_more.html', args)
-		else:
-			order.delete()
-			args['error'] = "Order Submission Failed!"
-			render(request, 'store/order_form.html', args)
-
-	return render(request, 'store/order_form.html', args)
+    for row in sql(q + page(**pg), request.user.id):
+        yield order.__wrapped__(request, details=row)
 
 def books(request):
-	args = {'book':('Photoshop Elements 9: The Missing Manual', 'paperback', '640', 'English', 'Barbara Brundage', 'Pogue Press', 'Science', '2010', '1449389678', '978-1449389673', 40)}  #tuple that contains info on all the books. REPLACE THE TUPLE WITH A QUERY LANGUAGE TO GET THE BOOK. SHOULD GET THE ROWS
+    args = {'book':('Photoshop Elements 9: The Missing Manual', 'paperback', '640', 'English', 'Barbara Brundage', 'Pogue Press', 'Science', '2010', '1449389678', '978-1449389673', 40)}  #tuple that contains info on all the books. REPLACE THE TUPLE WITH A QUERY LANGUAGE TO GET THE BOOK. SHOULD GET THE ROWS
 #NEED TO DO HTML FOR 'book' TO DO BOOK DETAILS
-	print (request.path).split('/')[2]  ##this is the ISBN13 number used to query
-	return render(request, 'books/book_details.html',args)
+    print (request.path).split('/')[2]  ##this is the ISBN13 number used to query
+
+    #search for feedback query
+
+    args['topNfeedback']= (1,2)
+
+    args['recommendation']=('samplebook','details')
+
+    return render(request, 'books/book_details.html',args)
 
 @login_required
 def userdata(request):
@@ -79,6 +76,44 @@ def userdata(request):
     args={}
     return render(request, 'users.html',args)
 
+@login_required
+def userorders(request):
+    if not request.user.username==request.path.split('/')[2]:
+        raise PermissionDenied('NOT LOGGED IN')
+    args={}
+    args['results'] = (('Today', 'booktitle'),('date','anothrbook'))
+    return render(request, 'user_orders.html',args)
+
+@login_required
+def userfeedback(request):
+    if not request.user.username==request.path.split('/')[2]:
+        raise PermissionDenied('NOT LOGGED IN')
+    args={}
+    args['results'] = (('Today', 'booktitle'),('date','anothrbook'))
+    return render(request, 'user_feedback.html',args)
+
+@login_required
+def newbook(request):
+    if not request.user.username=='admin':
+        raise PermissionDenied('NOT LOGGED IN')
+    args={}
+    return render(request, 'newbook.html',args)
+
+@login_required
+def arrivebook(request):
+    args={}
+    if not request.user.username=='admin':
+        raise PermissionDenied('NOT LOGGED IN')
+
+    if request.method == 'POST':
+        for key in request.POST.keys():
+            print key,":",request.POST[key]
+        # insert SQL query here
+        #add more book copies
+        return render(request, 'arrivebook.html',args)
+    else:
+        args = {"results": (('Photoshop Elements 9: The Missing Manual', 'paperback', '640', 'English', 'Barbara Brundage', 'Pogue Press', 'Science', '2010', '1449389678', '978-1449389673', 40),('Where Good Ideas Come From: The Natural History of Innovation', 'hardcover', '336', 'English', 'Steven Johnson', 'Riverhead Hardcover', 'Biology', '2010', '1594487715', '978-1594487712', 46))} #example results        
+        return render(request, 'arrivebook.html',args)
 
 	
 
