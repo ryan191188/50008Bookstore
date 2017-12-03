@@ -11,8 +11,8 @@ from django.shortcuts import render, redirect, render_to_response
 
 from django.contrib import messages
 
-from lib.utils import pagination
-from lib.decorators import json_response
+#from lib.utils import pagination
+#from lib.decorators import json_response
 
 
 def signup(request):
@@ -141,7 +141,7 @@ def arrivebook(request):
 
     if request.method == 'POST':
         for key in request.POST.keys():
-            print key,":",request.POST[key]
+            print (key,":",request.POST[key])
         # insert SQL query here
         #add more book copies
         return render(request, 'arrivebook.html',args)

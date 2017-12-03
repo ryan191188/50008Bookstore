@@ -76,8 +76,13 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.Book_INSERT.sql',
-        'NAME': os.path.join(BASE_DIR, 'db.Book_INSERT'),
+        #'ENGINE': 'django.db.backends.Book_INSERT.sql',
+        #'NAME': os.path.join(BASE_DIR, 'db.Book_INSERT'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'bookstoreproject',
+        'USER': 'root',
+        'PASSWORD': 'ryan',
+        'HOST': '',
     }
 
 
