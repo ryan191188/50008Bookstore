@@ -34,6 +34,9 @@ urlpatterns = [
 		 #logged in
                url(r'^accounts/login/',
                    auth_views.login,
+                   {
+                   'template_name': 'login.html'
+                   },
                    name='login'
                    ),
 
@@ -50,9 +53,9 @@ urlpatterns = [
 		   # core_views.orders,
      #               name='order'),
 	       
-               #url(r'^admin/', admin.site.urls),
+               url(r'^admin/', admin.site.urls),
 
-               url(r'^bookstore/', include('myapp.urls')),
+               #url(r'^bookstore/', include('myapp.urls')),
                
                url(r'^accounts/signup/',
                    core_views.signup, 

@@ -130,4 +130,6 @@ STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = '/search'
 
-AUTH_USER_MODEL = 'myapp.User'
+#AUTH_USER_MODEL = 'myapp.User'
+
+#AUTHENTICATION_BACKENDS = ('myapp.backend.UserAuthBackend',)

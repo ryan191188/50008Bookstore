@@ -77,20 +77,21 @@ def search(request):
     else:
         return render(request, 'form.html')
 
-def user_login(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+# def user_login(request):
+#     if request.method == 'POST':
+#         username = request.POST.get('username')
+#         password = request.POST.get('password')
 
-        user = authenticate(username=username, password=password)
+#         user = authenticate(username=username, password=password)
 
-        if user:
-            if user.is_active:
-                login(request, user)
-                return HttpResponseRedirect('login.html')
-            else:
-                return HttpResponse('Your user account is disabled!')
-        else:
-            return HttpResponse("Invalid login details supplied!")
-    else:
-        return render(request, 'login.html')
+#         if user:
+#             if user.is_active:
+#                 login(request, user)
+#                 return HttpResponseRedirect('login.html')
+#                 #return redirect('/')
+#             else:
+#                 return HttpResponse('Your user account is disabled!')
+#         else:
+#             return HttpResponse("Invalid login details supplied!")
+#     else:
+#         return render(request, 'login.html')
