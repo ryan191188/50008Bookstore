@@ -48,18 +48,18 @@ class User(models.Model):
     pw= models.CharField(max_length=60)
     
 
-class Book(models.Model):
-    title = models.CharField(max_length=100)
-    format = models.CharField(max_length=9)
-    pages = models.IntegerField(default=0)
-    languages = models.CharField(max_length=32)
-    authors = models.CharField(max_length=30)
-    publisher = models.CharField(max_length=30)
-    bookSubject =  models.CharField(max_length=30)
-    publication_date = models.DateField()
-    ISBN10 = models.CharField(max_length=20,default='')
-    ISBN13 = models.CharField(max_length=20, default='',primary_key=True)
-    numberOfCopies = models.IntegerField()
+# class Book(models.Model):
+#     title = models.CharField(max_length=100)
+#     format = models.CharField(max_length=9)
+#     pages = models.IntegerField(default=0)
+#     languages = models.CharField(max_length=32)
+#     authors = models.CharField(max_length=30)
+#     publisher = models.CharField(max_length=30)
+#     bookSubject =  models.CharField(max_length=30)
+#     publication_date = models.DateField()
+#     ISBN10 = models.CharField(max_length=20,default='')
+#     ISBN13 = models.CharField(max_length=20, default='',primary_key=True)
+#     numberOfCopies = models.IntegerField()
 
 
 #ew_user=User.objects.create_user('xiexin2011@gmail.com', '1TJT599QE2','XIE XIN')
