@@ -25,7 +25,7 @@ SECRET_KEY = 'pc=(n#)s-u5u^9e*r_0sm=@529qz-86w*9#^+vop-7wv812!st'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost',u'10.12.171.173',u'10.0.2.15',u'10.12.232.80']
+ALLOWED_HOSTS = ['localhost',u'10.12.171.173',u'10.0.2.15',u'10.12.255.182']
 
 
 # Application definition
@@ -76,8 +76,13 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.Book_INSERT.sql',
-        'NAME': os.path.join(BASE_DIR, 'db.Book_INSERT'),
+        #'ENGINE': 'django.db.backends.Book_INSERT.sql',
+        #'NAME': os.path.join(BASE_DIR, 'db.Book_INSERT'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'bookstoreproject',
+        'USER': 'root',
+        'PASSWORD': 'ryan',
+        'HOST': '',
     }
 
 
@@ -125,4 +130,3 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = '/accounts/signup'
-

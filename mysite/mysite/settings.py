@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'myapp',
 ]
 
 MIDDLEWARE = [
@@ -75,8 +76,12 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        #'NAME': os.path.join(BASE_DIR, 'db.mysql'),
+        'NAME': 'bookstoreproject',
+        'USER': 'root',
+        'PASSWORD': 'ryan',
+        'HOST': '',
     }
 
 
@@ -123,5 +128,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = '/accounts/signup'
+LOGIN_REDIRECT_URL = '/search'
 
+#AUTH_USER_MODEL = 'myapp.User'
+
+#AUTHENTICATION_BACKENDS = ('myapp.backend.UserAuthBackend',)

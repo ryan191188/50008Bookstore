@@ -24,7 +24,9 @@ urlpatterns = [
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.views import login #added
 from mysite import views as core_views
+from . import views
 
 
 urlpatterns = [
@@ -52,5 +54,5 @@ urlpatterns = [
 
                url(r'^search/',
                    core_views.search, name='search'),
-                              
+               url(r'^$', views.index, name="index")               
                ]

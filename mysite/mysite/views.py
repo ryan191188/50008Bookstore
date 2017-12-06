@@ -10,9 +10,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect, render_to_response
 
 from django.contrib import messages
-
-from lib.utils import pagination
-from lib.decorators import json_response
+from django.db import connection
+#from lib.utils import pagination
+#from lib.decorators import json_response
 
 
 def signup(request):
@@ -38,12 +38,28 @@ def logout(request):
     return redirect('/accounts/login/')
 
 def search(request):
-
+    args ={}
+    q = '''SELECT * FROM myapp_book'''
+    firstKey = True
     for key in request.GET.keys():
         print (key,":",request.GET[key])
     # insert SQL query here
-    context = {"results": (('Photoshop Elements 9: The Missing Manual', 'paperback', '640', 'English', 'Barbara Brundage', 'Pogue Press', 'Science', '2010', '1449389678', '978-1449389673', 40),('Where Good Ideas Come From: The Natural History of Innovation', 'hardcover', '336', 'English', 'Steven Johnson', 'Riverhead Hardcover', 'Biology', '2010', '1594487715', '978-1594487712', 46))} #example results
-    return render(request, 'search.html', context)
+        
+        if request.GET[key] != '' and firstKey and key!='sortby':
+            q += ' WHERE ' + key + ' LIKE ' + "'%" + (request.GET[key]) + "%'"
+            firstKey = False
+        elif request.GET[key] != '' and not firstKey and key!='sortby':
+            q += ' AND ' + key + ' LIKE ' + "'%" + (request.GET[key]) + "%'"
+    if 'sortby' in request.GET:
+        q+= ' ORDER BY ' + request.GET['sortby']
+    print(q)
+    cursor = connection.cursor()
+    cursor.execute(q)
+    #context = {"results": (('Photoshop Elements 9: The Missing Manual', 'paperback', '640', 'English', 'Barbara Brundage', 'Pogue Press', 'Science', '2010', '1449389678', '978-1449389673', 40),('Where Good Ideas Come From: The Natural History of Innovation', 'hardcover', '336', 'English', 'Steven Johnson', 'Riverhead Hardcover', 'Biology', '2010', '1594487715', '978-1594487712', 46))} #example results
+    row = cursor.fetchall()
+    args['results']=row
+    return render(request, 'search.html', args)
+    #return row
 
 # @json_response
 # def orders(request):
@@ -141,7 +157,7 @@ def arrivebook(request):
 
     if request.method == 'POST':
         for key in request.POST.keys():
-            print key,":",request.POST[key]
+            print (key,":",request.POST[key])
         # insert SQL query here
         #add more book copies
         return render(request, 'arrivebook.html',args)

@@ -25,8 +25,8 @@ if __name__ == "__main__":
 from django.contrib.auth.models import User
 from django.contrib.auth.validators import ASCIIUsernameValidator
 
-class CustomUser(User):
-    username_validator = ASCIIUsernameValidator()
+# class CustomUser(User):
+#     username_validator = ASCIIUsernameValidator()
     
-    class Meta:
-        proxy = True  # If no new field is added.
+#     class Meta:
+#         proxy = True  # If no new field is added.

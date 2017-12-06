@@ -1,5 +1,5 @@
-CREATE DATABASE BookStoreProject
-USE BookStoreProject
+CREATE DATABASE BookStoreProject;
+USE BookStoreProject;
 
 
 CREATE TABLE User(
