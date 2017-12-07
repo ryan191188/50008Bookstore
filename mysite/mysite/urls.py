@@ -25,7 +25,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from mysite import views as core_views
-from myapp import views as book_views
+#from myapp import views as book_views
 
 
 urlpatterns = [

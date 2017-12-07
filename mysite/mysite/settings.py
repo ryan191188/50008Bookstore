@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'myapp',
+#    'myapp',
 ]
 
 MIDDLEWARE = [
@@ -80,7 +80,7 @@ DATABASES = {
         #'NAME': os.path.join(BASE_DIR, 'db.mysql'),
         'NAME': 'bookstoreproject',
         'USER': 'root',
-        'PASSWORD': 'ryan',
+        'PASSWORD': 'password',
         'HOST': '',
     }
 

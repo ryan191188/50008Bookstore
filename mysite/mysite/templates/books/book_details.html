@@ -1,9 +1,33 @@
 {% if book %}
-<h2> Books Details</h2>
+{% for b in book %}
+	{{b.0}}<br>
+	{{b.1}}<br>
+	{{b.2}}<br>
+	{{b.3}}<br>
+	{{b.4}}<br>
+	{{b.5}}<br>
+	{{b.6}}<br>
+	{{b.7}}<br>
+	{{b.8}}<br>
+	{{b.9}}<br>
+	{{b.10}}<br>
+
+
+
+
+
+
+
+{% endfor %}
+
+
+
+
+<!-- <h2> Books Details</h2>
 <h4> Title: {{object.title}} </h4><!INSERT QUERY LANGUAGE>
 <p> Writer: {{object.writer}} </p><!INSERT QUERY LANGUAGE>
 <p> Descritption: {{object.descritption}} </p><!INSERT QUERY LANGUAGE>
-<p> Price: {{object.price}} </p><!INSERT QUERY LANGUAGE>
+<p> Price: {{object.price}} </p><!INSERT QUERY LANGUAGE> -->
 
 <h2>Feedback </h2>
 <! feeedback frm query>
