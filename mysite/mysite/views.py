@@ -101,11 +101,11 @@ def books(request):
     #args = {'book':('Photoshop Elements 9: The Missing Manual', 'paperback', '640', 'English', 'Barbara Brundage', 'Pogue Press', 'Science', '2010', '1449389678', '978-1449389673', 40)}  #tuple that contains info on all the books. REPLACE THE TUPLE WITH A QUERY LANGUAGE TO GET THE BOOK. SHOULD GET THE ROWS
 #NEED TO DO HTML FOR 'book' TO DO BOOK DETAILS
     args = {}
-    print (request.path).split('/')[2]  ##this is the ISBN13 number used to query
+    #print(request.path).split('/')[2]  ##this is the ISBN13 number used to query
     ISBN13 = (request.path).split('/')[2]
     q = "SELECT * FROM myapp_book WHERE ISBN13 = "
     q+="'"+ISBN13+"'"
-    print q
+    print(q)
     cursor = connection.cursor()
     cursor.execute(q)
     #context = {"results": (('Photoshop Elements 9: The Missing Manual', 'paperback', '640', 'English', 'Barbara Brundage', 'Pogue Press', 'Science', '2010', '1449389678', '978-1449389673', 40),('Where Good Ideas Come From: The Natural History of Innovation', 'hardcover', '336', 'English', 'Steven Johnson', 'Riverhead Hardcover', 'Biology', '2010', '1594487715', '978-1594487712', 46))} #example results
@@ -155,6 +155,21 @@ def newbook(request):
     if not request.user.username=='admin':
         raise PermissionDenied('NOT LOGGED IN')
     args={}
+    if request.method=='POST':
+        for key in request.POST.keys():
+            print(key, request.POST[key])
+        q = 'INSERT INTO myapp_book (title, format, pages, language, authors, publisher, bookSubject, year, ISBN10, ISBN13, numberOfCopies) VALUES'\
+        + "('" + request.POST['title'] + "', '" + request.POST['format'] + "', '" + request.POST['pages'] + "', '" + request.POST['language']\
+        + "', '" + request.POST['authors'] + "', '" + request.POST['publisher'] + "', '" + request.POST['subject'] + "', '" + request.POST['year'] + "', '"\
+        + request.POST['isbn10'] + "', '" + request.POST['isbn13'] + "', 1)" 
+
+
+         
+        print(q)
+        cursor = connection.cursor()
+        cursor.execute(q)
+        row = cursor.fetchall()
+        args['results']=row
     return render(request, 'newbook.html',args)
 
 @login_required
