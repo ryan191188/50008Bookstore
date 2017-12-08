@@ -59,7 +59,7 @@ urlpatterns = [
                
                url(r'^accounts/signup/',
                    core_views.signup, 
-		   name='signup'),
+		                name='signup'),
 
                url(r'^search/',
                    core_views.search, 
@@ -68,10 +68,6 @@ urlpatterns = [
 	       url(r'^user/.+/profile',
 		   core_views.userdata,
 		   name = 'user'),
-
-		   url(r'^user/.+/orders',
-		   core_views.userorders,
-		   name = 'userorders'), 
 
 		   url(r'^user/.+/feedback',
 		   core_views.userfeedback,

@@ -61,6 +61,7 @@ def search(request):
     return render(request, 'search.html', args)
     #return row
 
+
 # @json_response
 # def orders(request):
 
@@ -182,10 +183,13 @@ def arrivebook(request):
         for key in request.POST.keys():
             print (key,":",request.POST[key])
         # insert SQL query here
-        #add more book copies
+        q = "UPDATE myapp_book SET myapp_book.numberOfCopies = myapp_book.numberOfCopies + " + request.POST["quantity"] + " WHERE myapp_book.ISBN13 = '" + request.POST["isbn13"] +"'"
+        print q
+        cursor = connection.cursor()
+        cursor.execute(q)
+        row = cursor.fetchall()
         return render(request, 'arrivebook.html',args)
-    else:
-        args = {"results": (('Photoshop Elements 9: The Missing Manual', 'paperback', '640', 'English', 'Barbara Brundage', 'Pogue Press', 'Science', '2010', '1449389678', '978-1449389673', 40),('Where Good Ideas Come From: The Natural History of Innovation', 'hardcover', '336', 'English', 'Steven Johnson', 'Riverhead Hardcover', 'Biology', '2010', '1594487715', '978-1594487712', 46))} #example results        
+    else:     
         return render(request, 'arrivebook.html',args)
 
 
