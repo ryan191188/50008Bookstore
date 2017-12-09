@@ -6,7 +6,6 @@ Hello, {{user.username}} <br><br>
 <h3> Admin </h3>
 
     <button type="button" id=goToArrive>Book Arrivals</button>
-
     <script type="text/javascript">
         document.getElementById("goToArrive").onclick = function () {
             location.href = "../../arrivebook";
@@ -14,10 +13,16 @@ Hello, {{user.username}} <br><br>
     </script>
 
     <button type="button" id=goToNew>New Books</button>
-
     <script type="text/javascript">
         document.getElementById("goToNew").onclick = function () {
             location.href = "../../newbook";
+        };
+    </script>
+
+    <button type="button" id=goToStats>Monthly Statistics</button>
+    <script type="text/javascript">
+        document.getElementById("goToStats").onclick = function () {
+            location.href = "../../statistics";
         };
     </script>
 

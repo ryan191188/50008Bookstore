@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect, render_to_response
+from django.core.exceptions import PermissionDenied
 
 from django.contrib import messages
 from django.db import connection
@@ -120,6 +121,13 @@ def books(request):
     #args = {'book':('Photoshop Elements 9: The Missing Manual', 'paperback', '640', 'English', 'Barbara Brundage', 'Pogue Press', 'Science', '2010', '1449389678', '978-1449389673', 40)}  #tuple that contains info on all the books. REPLACE THE TUPLE WITH A QUERY LANGUAGE TO GET THE BOOK. SHOULD GET THE ROWS
 #NEED TO DO HTML FOR 'book' TO DO BOOK DETAILS
     args = {}
+
+    if request.method =="POST":
+
+        quantity = request.POST['quantity']
+        print quantity
+        q=""
+
     #print(request.path).split('/')[2]  ##this is the ISBN13 number used to query
     ISBN13 = (request.path).split('/')[2]
     q = "SELECT * FROM myapp_book WHERE ISBN13 = "
@@ -134,7 +142,32 @@ def books(request):
 
     args['topNfeedback']= (1,2)
 
-    args['recommendation']=('samplebook','details')
+ 
+    q = "SELECT title,ISBN13,COUNT(ISBN13) FROM myapp_orders NATURAL JOIN myapp_book " \
+        + "WHERE loginName IN " \
+            + "(SELECT b2.loginName FROM myapp_orders b1, myapp_orders b2 " \
+            + "WHERE b1.ISBN13 = b2.ISBN13 " \
+            + "AND b1.loginName <> b2.loginName " \
+            + "AND b1.ISBN13 = '" + ISBN13 + "') " \
+        + "AND ISBN13 <> '" + ISBN13 + "' " \
+        + "GROUP BY ISBN13 " \
+        + "ORDER BY COUNT(ISBN13) DESC;"
+
+
+    # 978-0072465631 has alot of orders
+    # 978-0672325670 also
+
+    print(q)
+    cursor = connection.cursor()
+    cursor.execute(q)
+    row = cursor.fetchall()
+    recommendations = list()
+    for i in range(len(row) if len(row)<=3 else 3):
+        recommendations.append(row[i])
+    recommendations=tuple(recommendations)
+    print recommendations
+
+    args['recommendation']= recommendations
 
 
     return render(request, 'books/book_details.html',args)
@@ -150,7 +183,16 @@ def userorders(request):
     if not request.user.username==request.path.split('/')[2]:
         raise PermissionDenied('NOT LOGGED IN')
     args={}
-    args['results'] = (('Today', 'booktitle'),('date','anothrbook'))
+
+    q = "SELECT myapp_book.title,myapp_orders.* FROM myapp_orders,myapp_book WHERE myapp_orders.loginName = '" + request.user.username \
+        + "' AND myapp_orders.ISBN13 = myapp_book.ISBN13 ORDER BY orderDate DESC"
+    print(q)
+    cursor = connection.cursor()
+    cursor.execute(q)
+    #context = {"results": (('Photoshop Elements 9: The Missing Manual', 'paperback', '640', 'English', 'Barbara Brundage', 'Pogue Press', 'Science', '2010', '1449389678', '978-1449389673', 40),('Where Good Ideas Come From: The Natural History of Innovation', 'hardcover', '336', 'English', 'Steven Johnson', 'Riverhead Hardcover', 'Biology', '2010', '1594487715', '978-1594487712', 46))} #example results
+    row = cursor.fetchall()
+    print row
+    args['results'] = row
     return render(request, 'user_orders.html',args)
 
 @login_required
@@ -211,6 +253,14 @@ def arrivebook(request):
         return render(request, 'arrivebook.html',args)
 
 
+
+@login_required
+def statistics(request):
+    args={}
+    if not request.user.username=='admin':
+        raise PermissionDenied('NOT LOGGED IN')
+
+    return render(request, 'arrivebook.html',args)
 
 
 

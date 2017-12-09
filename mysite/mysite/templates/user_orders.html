@@ -33,9 +33,11 @@
 {% if results %}
   <ol>
   {% for order in results %}
-  <li>
-    {{ order.0 }}<br>  <! DATE>   
-    <a href = "../../books/{{book.9}}" >{{ order.1 }}</a><br>  <! TITLE>        
+  <li> 
+    <a href = "../../books/{{order.2}}" >{{ order.0 }}</a><br>  <! TITLE>
+    {{order.3}} copies<br>
+    Ordered on {{order.4}}<br>
+    <br>        
     
 <!-- QUERY LANGUAGE TO GET SCORE BY REFERENCING ANOTHER SUBTABLE -->
     

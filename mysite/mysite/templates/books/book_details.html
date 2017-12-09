@@ -1,16 +1,17 @@
 {% if book %}
 {% for b in book %}
-	{{b.0}}<br>
-	{{b.1}}<br>
-	{{b.2}}<br>
-	{{b.3}}<br>
-	{{b.4}}<br>
-	{{b.5}}<br>
-	{{b.6}}<br>
-	{{b.7}}<br>
-	{{b.8}}<br>
-	{{b.9}}<br>
-	{{b.10}}<br>
+	<font size=6><b> {{b.0}}</b></font><br>
+	Cover type: {{b.1}}<br>
+	Pages: {{b.2}}<br>	
+	Language: {{b.3}}<br>
+	Author(s): {{b.4}}<br>
+	Publisher: {{b.5}}<br>
+	Subject: {{b.6}}<br>
+	Year: {{b.7}}<br>
+	ISBN10: {{b.8}}<br>
+	ISBN13: {{b.9}}<br>
+	Available copies: {{b.10}}<br>
+	<br>
 
 
 
@@ -28,13 +29,13 @@
 	<fieldset>
 
 	<!-- Form Name -->
-	<legend>Order</legend>
+	<legend><b>Order</b></legend>
 
 	<!-- Text input-->
 	<div class="form-group">
 	  <label class="col-md-4 control-label" for="quantity">Quantity</label>  
 	  <div class="col-md-4">
-	  <input id="quantity" name="quantity" type="number" min=1 step=1.0 placeholder="quantity" class="form-control input-md" required="">
+	  <input id="quantity" name="quantity" type="number" min=1 max={{book.0.10}} step=1.0 placeholder="quantity" class="form-control input-md" required="">
 	    
 	  </div>
 	</div>
@@ -42,7 +43,7 @@
 	<div class="form-group">
 	  <label class="col-md-4 control-label" for="orderbutton"></label>
 	  <div class="col-md-4">
-	    <button id="orderbutton" name="orderbutton" class="btn btn-primary">Add</button>
+	    <button id="orderbutton" name="orderbutton" class="btn btn-primary">Place Order</button>
 	  </div>
 	</div>
 
@@ -62,7 +63,20 @@
 <! feeedback frm query>
 
 <h2>Recommendation </h2>
-
+{% if recommendation %}
+  Customers who bought this book also liked:
+  <ol>
+  {% for book in recommendation %}
+  <li> 
+    <a href = "{{book.1}}" >{{ book.0 }}</a><br>  <! TITLE>
+    <br>        
+    
+<!-- QUERY LANGUAGE TO GET SCORE BY REFERENCING ANOTHER SUBTABLE -->
+    
+ </li>
+  {% endfor %}
+  </ol> 
+{% endif %}
 
 {% else %}
 <h2> Book Not Found </h2>

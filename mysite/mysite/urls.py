@@ -80,6 +80,9 @@ urlpatterns = [
 		   core_views.userratings,
 		   name = 'userratings'),
 
+       url(r'^user/.+/orders',
+       core_views.userorders,
+       name = 'userorders'),
 
 		   url(r'^newbook',
 		   core_views.newbook,
@@ -87,5 +90,9 @@ urlpatterns = [
 
 		   url(r'^arrivebook',
 		   core_views.arrivebook,
-		   name = 'arrivebook')         
+		   name = 'arrivebook'),
+
+       url(r'^statistics',
+       core_views.statistics,
+       name = 'statistics')      
                ]

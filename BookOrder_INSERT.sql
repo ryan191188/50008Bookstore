@@ -1,4 +1,4 @@
-INSERT INTO BookOrder VALUES
+INSERT INTO myapp_orders VALUES
 ('tayyongming1989@gmail.com', '978-1936594290', 4, '2015-11-22 19:46:13'),
 ('nehalkanwat1989@gmail.com', '978-0672325670', 2, '2017-11-18 15:53:31'),
 ('zhengxi1990@yahoo.com', '978-0596802356', 5, '2015-10-26 02:08:34'),
