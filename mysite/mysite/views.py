@@ -184,7 +184,7 @@ def arrivebook(request):
             print (key,":",request.POST[key])
         # insert SQL query here
         q = "UPDATE myapp_book SET myapp_book.numberOfCopies = myapp_book.numberOfCopies + " + request.POST["quantity"] + " WHERE myapp_book.ISBN13 = '" + request.POST["isbn13"] +"'"
-        print q
+        print(q)
         cursor = connection.cursor()
         cursor.execute(q)
         row = cursor.fetchall()

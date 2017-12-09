@@ -42,10 +42,10 @@ from django.db import models
 #     objects = CustomerManager()
 
 # Create your models here.
-class User(models.Model):
-    name = models.CharField(max_length=30)
-    login = models.CharField(max_length=50)
-    pw= models.CharField(max_length=60)
+# class User(models.Model):
+#     name = models.CharField(max_length=30)
+#     login = models.CharField(max_length=50)
+#     pw= models.CharField(max_length=60)
     
 
 # class Book(models.Model):
