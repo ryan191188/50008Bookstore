@@ -47,6 +47,9 @@ urlpatterns = [
                    'template_name': 'logout.html'
                    },
                    name='logout'),
+
+               url(r'^loginSuccess/',
+                   core_views.loginSuccess, name='loginSuccess'),
                
 
 	    #    url(r'^accounts/order/',

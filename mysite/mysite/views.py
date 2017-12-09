@@ -33,9 +33,27 @@ def signup(request):
     
     return render(request, 'signup.html', {'form': form})
 
-def logout(request):
-    logout(request)
-    return redirect('/accounts/login/')
+# def login(request):
+#     print "login"
+#     username = request.POST['username']
+#     password = request.POST['password']
+#     user = authenticate(username=username, password=password)
+#     if user is not None:
+#         if user.is_active:
+#             login(request, user)
+#             HttpResponseRedirect('../user/%s/profile/'%username) 
+#         else:
+#             pass# Return a 'disabled account' error message
+#     else:
+#         pass# Return an 'invalid login' error message.
+
+# def logout(request):
+#     logout(request)
+#     return redirect('/accounts/login/')
+
+def loginSuccess(request):
+    path = "/user/"+request.user.username+"/profile"
+    return redirect(path)
 
 def search(request):
     args ={}

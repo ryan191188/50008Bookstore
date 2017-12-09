@@ -128,7 +128,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = '/search'
+LOGIN_REDIRECT_URL = '/loginSuccess'
 
 #AUTH_USER_MODEL = 'myapp.User'
 

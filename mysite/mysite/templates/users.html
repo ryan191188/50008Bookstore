@@ -2,34 +2,65 @@
 
 Hello, {{user.username}} <br><br>
 
-<button type="button" id=goToProfile>Profile</button>
+{% if user.is_staff %}
+<h3> Admin </h3>
 
-<script type="text/javascript">
-    document.getElementById("goToProfile").onclick = function () {
-        location.href = "profile";
-    };
-</script>
-<button type="button" id=goToOrders>Orders</button>
+    <button type="button" id=goToArrive>Book Arrivals</button>
 
-<script type="text/javascript">
-    document.getElementById("goToOrders").onclick = function () {
-        location.href = "orders";
-    };
-</script>
-<button type="button" id=goToFeedback>Feedback</button>
+    <script type="text/javascript">
+        document.getElementById("goToArrive").onclick = function () {
+            location.href = "../../arrivebook";
+        };
+    </script>
 
-<script type="text/javascript">
-    document.getElementById("goToFeedback").onclick = function () {
-        location.href = "feedback";
-    };
-</script>
-<button type="button" id=goToRatings>Ratings</button>
+    <button type="button" id=goToNew>New Books</button>
 
-<script type="text/javascript">
-    document.getElementById("goToRatings").onclick = function () {
-        location.href = "ratings";
-    };
-</script>
+    <script type="text/javascript">
+        document.getElementById("goToNew").onclick = function () {
+            location.href = "../../newbook";
+        };
+    </script>
+
+{% else %}
+
+    <button type="button" id=goToProfile>Profile</button>
+
+    <script type="text/javascript">
+        document.getElementById("goToProfile").onclick = function () {
+            location.href = "profile";
+        };
+    </script>
+    <button type="button" id=goToOrders>Orders</button>
+
+    <script type="text/javascript">
+        document.getElementById("goToOrders").onclick = function () {
+            location.href = "orders";
+        };
+    </script>
+    <button type="button" id=goToFeedback>Feedback</button>
+
+    <script type="text/javascript">
+        document.getElementById("goToFeedback").onclick = function () {
+            location.href = "feedback";
+        };
+    </script>
+    <button type="button" id=goToRatings>Ratings</button>
+
+    <script type="text/javascript">
+        document.getElementById("goToRatings").onclick = function () {
+            location.href = "ratings";
+        };
+    </script>
+
+    <br><br>
+
+    <button type="button" id=goToSearch> <h3>Search for Books</h3> </button>
+    <script type="text/javascript">
+        document.getElementById("goToSearch").onclick = function () {
+            location.href = "../../search";
+        };
+    </script>
 
 
+{% endif %}
 
