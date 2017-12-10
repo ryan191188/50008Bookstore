@@ -1,4 +1,4 @@
-INSERT INTO RatingFeedback VALUES
+INSERT INTO myapp_usefulness (loginName,userBeingRated, ISBN13, score) VALUES
 ('gohengchye1992@msn.com', 'zhangyingbo1989@msn.com', '978-0538497909', 1),
 ('dingweixiang1990@yahoo.com', 'davidchapman1989@msn.com', '978-1770450714', 1),
 ('davidhall1992@yahoo.com', 'jerrybrown2010@gmail.com', '978-0136058960', 0),

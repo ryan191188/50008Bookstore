@@ -30,3 +30,19 @@
     };
 </script>
 
+{% if results %}
+  <ol>
+  {% for feedback in results %}
+  <li>
+    <a href = "../../books/{{feedback.3}}" >{{ feedback.5 }}</a><br>  <! TITLE> 
+    User being rated: {{feedback.2 }} <br>   
+    Feedback: {{ feedback.4 }}<br>
+    Score: {{ feedback.1 }}<br> 
+    
+
+<!-- QUERY LANGUAGE TO GET SCORE BY REFERENCING ANOTHER SUBTABLE -->
+    
+ </li>
+  {% endfor %}
+  </ol> 
+{% endif %}

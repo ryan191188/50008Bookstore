@@ -58,25 +58,29 @@ def loginSuccess(request):
 
 def search(request):
     args ={}
-    q = '''SELECT * FROM myapp_book'''
-    firstKey = True
+    q = '''SELECT myapp_book.*,AVG(myapp_feedback.score) 
+    FROM myapp_book,myapp_feedback 
+    WHERE myapp_book.ISBN13 = myapp_feedback.ISBN13'''
+    # firstKey = True
     for key in request.GET.keys():
         print (key,":",request.GET[key])
     # insert SQL query here
         
-        if request.GET[key] != '' and firstKey and key!='sortby':
-            q += ' WHERE ' + key + ' LIKE ' + "'%" + (request.GET[key]) + "%'"
-            firstKey = False
-        elif request.GET[key] != '' and not firstKey and key!='sortby':
+        # if request.GET[key] != '' and firstKey and key!='sortby':
+        #     q += ' WHERE ' + key + ' LIKE ' + "'%" + (request.GET[key]) + "%'"
+        #     firstKey = False
+        if request.GET[key] != '' and key!='sortby':
             q += ' AND ' + key + ' LIKE ' + "'%" + (request.GET[key]) + "%'"
+    q+=' GROUP BY myapp_book.ISBN13 '
     if 'sortby' in request.GET:
-        q+= ' ORDER BY ' + request.GET['sortby']
+        q+= ' ORDER BY ' + (request.GET['sortby'] if request.GET['sortby'] == 'year' else 'AVG(myapp_feedback.score)') + ' DESC'
     print(q)
     cursor = connection.cursor()
     cursor.execute(q)
     #context = {"results": (('Photoshop Elements 9: The Missing Manual', 'paperback', '640', 'English', 'Barbara Brundage', 'Pogue Press', 'Science', '2010', '1449389678', '978-1449389673', 40),('Where Good Ideas Come From: The Natural History of Innovation', 'hardcover', '336', 'English', 'Steven Johnson', 'Riverhead Hardcover', 'Biology', '2010', '1594487715', '978-1594487712', 46))} #example results
     row = cursor.fetchall()
     args['results']=row
+    print row
     return render(request, 'search.html', args)
     #return row
 
@@ -121,27 +125,88 @@ def books(request):
     #args = {'book':('Photoshop Elements 9: The Missing Manual', 'paperback', '640', 'English', 'Barbara Brundage', 'Pogue Press', 'Science', '2010', '1449389678', '978-1449389673', 40)}  #tuple that contains info on all the books. REPLACE THE TUPLE WITH A QUERY LANGUAGE TO GET THE BOOK. SHOULD GET THE ROWS
 #NEED TO DO HTML FOR 'book' TO DO BOOK DETAILS
     args = {}
+    ISBN13 = (request.path).split('/')[2]
 
     if request.method =="POST":
+        if 'orderbutton' in request.POST:
+            quantity = request.POST['quantity']
+            print quantity
+            q= "INSERT INTO myapp_orders VALUES ('" \
+                + request.user.username + "', '" + ISBN13 + "', " + quantity + ", NOW() )"
+            print q
+            cursor = connection.cursor()
+            cursor.execute(q)
+        elif "bookRatingbutton"in request.POST:
+            score = request.POST['BookRating']
+            print score
+            q= "INSERT INTO myapp_feedback VALUES ('" \
+                + request.user.username + "', '" + ISBN13 + "', " +  score \
+                + ", ' " + request.POST['comments'] + "' , "+ " CURDATE() )"
+            print q
+            cursor = connection.cursor()
+            try:
+                cursor.execute(q)
+            except:
+                raise PermissionDenied("안녕")
+        elif "0" in request.POST  or "1" in request.POST or "2" in request.POST:
+            rating = None
+            if "0" in request.POST:
+                rating = 0
+            elif "1" in request.POST:
+                rating = 1
+            elif "2" in request.POST:
+                rating = 2    
 
-        quantity = request.POST['quantity']
-        print quantity
-        q=""
+            if request.user.username == request.POST[str(rating)]:
+                raise PermissionDenied("qwertyuiop")
 
+            q= "INSERT INTO myapp_usefulness (loginName,userBeingRated,ISBN13,score)VALUES ('" \
+                + request.user.username + "', '" + request.POST[str(rating)] + "', '" +  ISBN13 \
+                + "', " + str(rating) + ")"
+            print q
+            cursor = connection.cursor()
+            try:
+                cursor.execute(q)
+            except:
+                raise PermissionDenied("u voted already")
     #print(request.path).split('/')[2]  ##this is the ISBN13 number used to query
-    ISBN13 = (request.path).split('/')[2]
     q = "SELECT * FROM myapp_book WHERE ISBN13 = "
     q+="'"+ISBN13+"'"
-    print(q)
+    #print(q)
     cursor = connection.cursor()
     cursor.execute(q)
     #context = {"results": (('Photoshop Elements 9: The Missing Manual', 'paperback', '640', 'English', 'Barbara Brundage', 'Pogue Press', 'Science', '2010', '1449389678', '978-1449389673', 40),('Where Good Ideas Come From: The Natural History of Innovation', 'hardcover', '336', 'English', 'Steven Johnson', 'Riverhead Hardcover', 'Biology', '2010', '1594487715', '978-1594487712', 46))} #example results
     row = cursor.fetchall()
     args['book']=row
+
     #search for feedback query
+    if 'topn' in request.POST:
+        query = 'SELECT F.* '\
+                + 'FROM myapp_feedback F, '\
+                + '(SELECT T.userBeingRated,T.ISBN13,avg(T.score) '\
+                + 'FROM (SELECT R.* '\
+                + 'FROM myapp_feedback F, myapp_usefulness R '\
+                + 'WHERE F.ISBN13 = R.ISBN13) as T '\
+                + "WHERE T.ISBN13 = '" + ISBN13 +"' "\
+                + 'GROUP BY T.userBeingRated '\
+                + 'ORDER BY avg(T.score) '\
+                + 'DESC) as T2 '\
+                + 'WHERE F.loginName = T2.userBeingRated '\
+                + 'AND F.ISBN13 = T2.ISBN13 '\
+                + "LIMIT "+ request.POST['topn'] +  ";"
+    else:
+        query = "SELECT * FROM myapp_feedback NATURAL JOIN myapp_book " \
+            + "WHERE ISBN13 = " + "'" + ISBN13 +"'"\
+            + " ORDER BY feedbackDate DESC;"
+    #print query
+    cursor = connection.cursor()
+    cursor.execute(query)
 
-    args['topNfeedback']= (1,2)
 
+    #context = {"results": (('Photoshop Elements 9: The Missing Manual', 'paperback', '640', 'English', 'Barbara Brundage', 'Pogue Press', 'Science', '2010', '1449389678', '978-1449389673', 40),('Where Good Ideas Come From: The Natural History of Innovation', 'hardcover', '336', 'English', 'Steven Johnson', 'Riverhead Hardcover', 'Biology', '2010', '1594487715', '978-1594487712', 46))} #example results
+    row = cursor.fetchall()
+    args['feedback']= row
+    print row
  
     q = "SELECT title,ISBN13,COUNT(ISBN13) FROM myapp_orders NATURAL JOIN myapp_book " \
         + "WHERE loginName IN " \
@@ -157,15 +222,16 @@ def books(request):
     # 978-0072465631 has alot of orders
     # 978-0672325670 also
 
-    print(q)
+    #print(q)
     cursor = connection.cursor()
     cursor.execute(q)
     row = cursor.fetchall()
+
     recommendations = list()
     for i in range(len(row) if len(row)<=3 else 3):
         recommendations.append(row[i])
     recommendations=tuple(recommendations)
-    print recommendations
+    #print recommendations
 
     args['recommendation']= recommendations
 
@@ -200,15 +266,38 @@ def userfeedback(request):
     if not request.user.username==request.path.split('/')[2]:
         raise PermissionDenied('NOT LOGGED IN')
     args={}
-    args['results'] = (('Today', 'booktitle'),('date','anothrbook'))
+
+    q = "SELECT * FROM myapp_feedback NATURAL JOIN myapp_book " \
+        + "WHERE loginName = '" + request.user.username + "' " \
+        + "ORDER BY feedbackDate DESC"
+
+    print(q)
+    cursor = connection.cursor()
+    cursor.execute(q)
+    row = cursor.fetchall()
+    print row
+
+    args['results'] = row
     return render(request, 'user_feedback.html',args)
 
 @login_required
 def userratings(request):
     if not request.user.username==request.path.split('/')[2]:
         raise PermissionDenied('NOT LOGGED IN')
-    args={}
-    args['results'] = (('Today', 'booktitle'),('date','anothrbook'))
+    args={}    
+    q = "SELECT t1.*,t2.feedbackText, t3.title "\
+    + "FROM myapp_usefulness t1, myapp_feedback t2, myapp_book t3 "\
+    + "WHERE t1.userBeingRated = t2.loginName "\
+    + "AND t1.ISBN13 = t2.ISBN13 "\
+    + "AND t1.loginName = '" + request.user.username +"' "\
+    + "AND t1.ISBN13 = t3.ISBN13 " \
+    + "ORDER BY t1.score DESC;"     
+    print(q)
+    cursor = connection.cursor()
+    cursor.execute(q)
+    row = cursor.fetchall()
+    print row
+    args['results']=row
     return render(request, 'user_ratings.html',args)
 
 @login_required
@@ -232,6 +321,9 @@ def newbook(request):
         row = cursor.fetchall()
         args['results']=row
     return render(request, 'newbook.html',args)
+
+
+
 
 @login_required
 def arrivebook(request):

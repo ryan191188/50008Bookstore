@@ -34,9 +34,13 @@
   <ol>
   {% for feedback in results %}
   <li>
-    {{ feedback.0 }}<br>  <! DATE>   
-    <a href = "../../books/{{book.9}}" >{{ feedback.1 }}</a><br>  <! TITLE>        
-    
+    <a href = "../../books/{{feedback.0}}" >{{ feedback.5 }}</a><br>  <! TITLE>  
+    {{ feedback.4 }}<br>  <! DATE>  
+    Score: {{ feedback.2 }}<br>  
+    Comments:<br>
+    <font color="#333333">{{ feedback.3 }} </font><br> 
+    <br>
+
 <!-- QUERY LANGUAGE TO GET SCORE BY REFERENCING ANOTHER SUBTABLE -->
     
  </li>
