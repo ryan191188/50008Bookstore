@@ -8,18 +8,20 @@ def run():
     # # user.set_password('dily1234')
     global User
     user0 = User.objects.create_user(
-    username = 'xiexin2011@gmail.com',
-    email = 'xiexin2011@gmail.com',
-    is_superuser = 0,
-    first_name = '',
-    is_active = 1,
-    password = '1TJT599QE2' )
+        username = 'xiexin2011@gmail.com',
+        email = 'xiexin2011@gmail.com',
+        is_superuser = 0,
+        first_name = 'XIE',
+        last_name = 'XIN',
+        is_active = 1,
+        password = '1TJT599QE2' )
 
     user1 = User.objects.create_user(
         username = 'huangran1991@yahoo.com',
         email = 'huangran1991@yahoo.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'HUANG',
+        last_name = 'RAN',
         is_active = 1,
         password = 'CV3MVFY68O' )
 
@@ -27,7 +29,8 @@ def run():
         username = 'gohengchye1992@msn.com',
         email = 'gohengchye1992@msn.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'GOH',
+        last_name = 'ENG CHYE',
         is_active = 1,
         password = 'USRVX0A2M7' )
 
@@ -35,7 +38,8 @@ def run():
         username = 'gohhuiying1989@gmail.com',
         email = 'gohhuiying1989@gmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'GOH',
+        last_name = 'HUI YING',
         is_active = 1,
         password = 'FWTNTZ79NI' )
 
@@ -43,7 +47,8 @@ def run():
         username = 'fanghan2011@hotmail.com',
         email = 'fanghan2011@hotmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'FANG',
+        last_name = 'HAN',
         is_active = 1,
         password = 'DFHQJYXGBF' )
 
@@ -51,7 +56,8 @@ def run():
         username = 'dingkuanchong2010@msn.com',
         email = 'dingkuanchong2010@msn.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'DING',
+        last_name = 'KUAN CHONG',
         is_active = 1,
         password = 'J9GL6SHTK9' )
 
@@ -59,7 +65,8 @@ def run():
         username = 'tayweiguo1989@msn.com',
         email = 'tayweiguo1989@msn.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'TAY',
+        last_name = 'WEI GUO',
         is_active = 1,
         password = '6B2LA7YXLE' )
 
@@ -67,7 +74,8 @@ def run():
         username = 'ongkahhong1991@gmail.com',
         email = 'ongkahhong1991@gmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'ONG',
+        last_name = 'KAH HONG',
         is_active = 1,
         password = '0WGOM6AOBF' )
 
@@ -75,7 +83,8 @@ def run():
         username = 'pengjiayuan2011@hotmail.com',
         email = 'pengjiayuan2011@hotmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'PENG',
+        last_name = 'JIAYUAN',
         is_active = 1,
         password = 'WSZE68YG1F' )
 
@@ -83,7 +92,8 @@ def run():
         username = 'huangzhanpeng1992@msn.com',
         email = 'huangzhanpeng1992@msn.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'HUANG',
+        last_name = 'ZHANPENG',
         is_active = 1,
         password = 'LJ9II5LYLR' )
 
@@ -91,7 +101,8 @@ def run():
         username = 'ngoogekping1990@hotmail.com',
         email = 'ngoogekping1990@hotmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'NGOO',
+        last_name = 'GEK PING',
         is_active = 1,
         password = 'A3M218KZU2' )
 
@@ -99,7 +110,8 @@ def run():
         username = 'geyuwei1992@hotmail.com',
         email = 'geyuwei1992@hotmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'GE',
+        last_name = 'YUWEI',
         is_active = 1,
         password = 'OTSW1M6XC0' )
 
@@ -107,7 +119,8 @@ def run():
         username = 'zhengzhemin1991@yahoo.com',
         email = 'zhengzhemin1991@yahoo.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'ZHENG',
+        last_name = 'ZHEMIN',
         is_active = 1,
         password = 'RRVRSIB9JD' )
 
@@ -115,7 +128,8 @@ def run():
         username = 'liuzhanpeng2011@msn.com',
         email = 'liuzhanpeng2011@msn.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'LIU',
+        last_name = 'ZHANPENG',
         is_active = 1,
         password = 'TS4KRHNH0X' )
 
@@ -123,7 +137,8 @@ def run():
         username = 'huangwenxin2010@msn.com',
         email = 'huangwenxin2010@msn.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'HUANG',
+        last_name = 'WENXIN',
         is_active = 1,
         password = '4GT46RXG9T' )
 
@@ -131,7 +146,8 @@ def run():
         username = 'choyweixiang2011@gmail.com',
         email = 'choyweixiang2011@gmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'CHOY',
+        last_name = 'WEI XIANG',
         is_active = 1,
         password = '00MLK7ZHDU' )
 
@@ -139,7 +155,8 @@ def run():
         username = 'wangna1990@yahoo.com',
         email = 'wangna1990@yahoo.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'WANG',
+        last_name = 'NA',
         is_active = 1,
         password = '61LBQNVOJM' )
 
@@ -147,7 +164,8 @@ def run():
         username = 'zhouhuichan1990@msn.com',
         email = 'zhouhuichan1990@msn.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'ZHOU',
+        last_name = 'HUICHAN',
         is_active = 1,
         password = 'A2SNIMH15U' )
 
@@ -155,7 +173,8 @@ def run():
         username = 'nganhquang1991@yahoo.com',
         email = 'nganhquang1991@yahoo.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'NG',
+        last_name = 'ANH QUANG',
         is_active = 1,
         password = '5Q4JYG2TXH' )
 
@@ -163,7 +182,8 @@ def run():
         username = 'huangqi1990@msn.com',
         email = 'huangqi1990@msn.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'HUANG',
+        last_name = 'QI',
         is_active = 1,
         password = 'IM1CNEV20N' )
 
@@ -171,7 +191,8 @@ def run():
         username = 'dinggekping1991@msn.com',
         email = 'dinggekping1991@msn.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'DING',
+        last_name = 'GEK PING',
         is_active = 1,
         password = 'ID5H4HD5AT' )
 
@@ -179,7 +200,8 @@ def run():
         username = 'pohhuiling1992@hotmail.com',
         email = 'pohhuiling1992@hotmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'POH',
+        last_name = 'HUI LING',
         is_active = 1,
         password = 'DNDN02L107' )
 
@@ -187,7 +209,8 @@ def run():
         username = 'ngqiyang1989@msn.com',
         email = 'ngqiyang1989@msn.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'NG',
+        last_name = 'QI YANG',
         is_active = 1,
         password = 'GC97YEFLHJ' )
 
@@ -195,7 +218,8 @@ def run():
         username = 'neelamdeol2011@hotmail.com',
         email = 'neelamdeol2011@hotmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'NEELAM',
+        last_name = 'DEOL',
         is_active = 1,
         password = 'FTOGQNGWG5' )
 
@@ -203,7 +227,8 @@ def run():
         username = 'liyuzhao1990@gmail.com',
         email = 'liyuzhao1990@gmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'LI',
+        last_name = 'YUZHAO',
         is_active = 1,
         password = '6AHZMPH0OJ' )
 
@@ -211,7 +236,8 @@ def run():
         username = 'vargheseaneja1992@msn.com',
         email = 'vargheseaneja1992@msn.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'VARGHESE',
+        last_name = 'ANEJA',
         is_active = 1,
         password = '6VLXNPMFFG' )
 
@@ -219,7 +245,8 @@ def run():
         username = 'liushaojun2010@msn.com',
         email = 'liushaojun2010@msn.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'LIU',
+        last_name = 'SHAOJUN',
         is_active = 1,
         password = 'GA2I114P81' )
 
@@ -227,7 +254,8 @@ def run():
         username = 'qinyiyang2010@hotmail.com',
         email = 'qinyiyang2010@hotmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'QIN',
+        last_name = 'YIYANG',
         is_active = 1,
         password = 'XQCCUGEM8F' )
 
@@ -235,7 +263,8 @@ def run():
         username = 'zhoucong1990@yahoo.com',
         email = 'zhoucong1990@yahoo.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'ZHOU',
+        last_name = 'CONG',
         is_active = 1,
         password = 'J9JKZ5YJVN' )
 
@@ -243,7 +272,8 @@ def run():
         username = 'tayyongming1989@gmail.com',
         email = 'tayyongming1989@gmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'TAY',
+        last_name = 'YONG MING',
         is_active = 1,
         password = 'ETL4YV46S7' )
 
@@ -251,7 +281,8 @@ def run():
         username = 'siowcaokhoa1991@msn.com',
         email = 'siowcaokhoa1991@msn.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'SIOW',
+        last_name = 'CAO KHOA',
         is_active = 1,
         password = 'Y9MY702SN5' )
 
@@ -259,7 +290,8 @@ def run():
         username = 'nihanran1989@msn.com',
         email = 'nihanran1989@msn.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'NI',
+        last_name = 'HANRAN',
         is_active = 1,
         password = '32FGMX9Q1L' )
 
@@ -267,7 +299,8 @@ def run():
         username = 'choyyiting1992@hotmail.com',
         email = 'choyyiting1992@hotmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'CHOY',
+        last_name = 'YI TING',
         is_active = 1,
         password = 'O0KAZMDFSI' )
 
@@ -275,7 +308,8 @@ def run():
         username = 'dennisbeckham1989@msn.com',
         email = 'dennisbeckham1989@msn.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'DENNIS',
+        last_name = 'BECKHAM',
         is_active = 1,
         password = '8T3UTWKMVZ' )
 
@@ -283,7 +317,8 @@ def run():
         username = 'zhangzhuo1989@hotmail.com',
         email = 'zhangzhuo1989@hotmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'ZHANG',
+        last_name = 'ZHUO',
         is_active = 1,
         password = '98HR8ZSJH0' )
 
@@ -291,7 +326,8 @@ def run():
         username = 'anupamaanghan2010@yahoo.com',
         email = 'anupamaanghan2010@yahoo.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'ANUPAMA',
+        last_name = 'ANGHAN',
         is_active = 1,
         password = 'X3ZXEQ9WZ5' )
 
@@ -299,7 +335,8 @@ def run():
         username = 'liuqian1991@yahoo.com',
         email = 'liuqian1991@yahoo.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'LIU',
+        last_name = 'QIAN',
         is_active = 1,
         password = 'OKLITSW12O' )
 
@@ -307,7 +344,8 @@ def run():
         username = 'zhangyingbo1989@msn.com',
         email = 'zhangyingbo1989@msn.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'ZHANG',
+        last_name = 'YINGBO',
         is_active = 1,
         password = 'O3BYC796R7' )
 
@@ -315,7 +353,8 @@ def run():
         username = 'chiayeuarng1991@hotmail.com',
         email = 'chiayeuarng1991@hotmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'CHIA',
+        last_name = 'YEU ARNG',
         is_active = 1,
         password = 'XSVT14JR19' )
 
@@ -323,7 +362,8 @@ def run():
         username = 'zengyihui2010@yahoo.com',
         email = 'zengyihui2010@yahoo.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'ZENG',
+        last_name = 'YIHUI',
         is_active = 1,
         password = 'TBVTNETGOV' )
 
@@ -331,7 +371,8 @@ def run():
         username = 'fengmeng1990@gmail.com',
         email = 'fengmeng1990@gmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'FENG',
+        last_name = 'MENG',
         is_active = 1,
         password = 'GRVLNF4GET' )
 
@@ -339,7 +380,8 @@ def run():
         username = 'zhanghan1989@hotmail.com',
         email = 'zhanghan1989@hotmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'ZHANG',
+        last_name = 'HAN',
         is_active = 1,
         password = '9OPT3S6VXD' )
 
@@ -347,7 +389,8 @@ def run():
         username = 'liudanni1991@yahoo.com',
         email = 'liudanni1991@yahoo.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'LIU',
+        last_name = 'DANNI',
         is_active = 1,
         password = 'S9LLJKHM8S' )
 
@@ -355,7 +398,8 @@ def run():
         username = 'sohjiefeng1991@msn.com',
         email = 'sohjiefeng1991@msn.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'SOH',
+        last_name = 'JIE FENG',
         is_active = 1,
         password = 'HXZXHM3D5Y' )
 
@@ -363,7 +407,8 @@ def run():
         username = 'tanchenghan1990@msn.com',
         email = 'tanchenghan1990@msn.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'TAN',
+        last_name = 'CHENG HAN',
         is_active = 1,
         password = '1G4FPR2O2Y' )
 
@@ -371,7 +416,8 @@ def run():
         username = 'jennyhunt1991@gmail.com',
         email = 'jennyhunt1991@gmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'JENNY',
+        last_name = 'HUNT',
         is_active = 1,
         password = 'Q33V5UJVH7' )
 
@@ -379,7 +425,8 @@ def run():
         username = 'dingyang1989@gmail.com',
         email = 'dingyang1989@gmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'DING',
+        last_name = 'YANG',
         is_active = 1,
         password = 'EYEF84U0O2' )
 
@@ -387,7 +434,8 @@ def run():
         username = 'zhanghong2011@msn.com',
         email = 'zhanghong2011@msn.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'ZHANG',
+        last_name = 'HONG',
         is_active = 1,
         password = 'SFXHR9I6YN' )
 
@@ -395,7 +443,8 @@ def run():
         username = 'xuhuajun1990@msn.com',
         email = 'xuhuajun1990@msn.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'XU',
+        last_name = 'HUAJUN',
         is_active = 1,
         password = '9337PL6DNV' )
 
@@ -403,7 +452,8 @@ def run():
         username = 'someshaneja2011@yahoo.com',
         email = 'someshaneja2011@yahoo.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'SOMESH',
+        last_name = 'ANEJA',
         is_active = 1,
         password = 'EE23MQIFTP' )
 
@@ -411,7 +461,8 @@ def run():
         username = 'seahteckkee1990@gmail.com',
         email = 'seahteckkee1990@gmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'SEAH',
+        last_name = 'TECK KEE',
         is_active = 1,
         password = '6NEB1KAQC4' )
 
@@ -419,7 +470,8 @@ def run():
         username = 'liuyihui1990@hotmail.com',
         email = 'liuyihui1990@hotmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'LIU',
+        last_name = 'YIHUI',
         is_active = 1,
         password = 'G44QMSHG3Z' )
 
@@ -427,7 +479,8 @@ def run():
         username = 'zhuchang2010@gmail.com',
         email = 'zhuchang2010@gmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'ZHU',
+        last_name = 'CHANG',
         is_active = 1,
         password = 'HGZAB0GDTL' )
 
@@ -435,7 +488,8 @@ def run():
         username = 'zhengxi1990@yahoo.com',
         email = 'zhengxi1990@yahoo.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'ZHENG',
+        last_name = 'XI',
         is_active = 1,
         password = 'MKO8NM3M9N' )
 
@@ -443,7 +497,8 @@ def run():
         username = 'yeojiahao1989@yahoo.com',
         email = 'yeojiahao1989@yahoo.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'YEO',
+        last_name = 'JIA HAO',
         is_active = 1,
         password = 'H7KPRGVD9K' )
 
@@ -451,7 +506,8 @@ def run():
         username = 'anniechapman1991@yahoo.com',
         email = 'anniechapman1991@yahoo.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'ANNIE',
+        last_name = 'CHAPMAN',
         is_active = 1,
         password = '8C91FFJVMH' )
 
@@ -459,7 +515,8 @@ def run():
         username = 'jerrybrown2010@gmail.com',
         email = 'jerrybrown2010@gmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'JERRY',
+        last_name = 'BROWN',
         is_active = 1,
         password = 'Z21MCKDRGZ' )
 
@@ -467,7 +524,8 @@ def run():
         username = 'zhouxialin1990@yahoo.com',
         email = 'zhouxialin1990@yahoo.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'ZHOU',
+        last_name = 'XIALIN',
         is_active = 1,
         password = 'CUTENOSVSB' )
 
@@ -475,7 +533,8 @@ def run():
         username = 'tanhuilin1989@hotmail.com',
         email = 'tanhuilin1989@hotmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'TAN',
+        last_name = 'HUI LIN',
         is_active = 1,
         password = 'AGTABAQA7O' )
 
@@ -483,7 +542,8 @@ def run():
         username = 'jennybeckham1992@gmail.com',
         email = 'jennybeckham1992@gmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'JENNY',
+        last_name = 'BECKHAM',
         is_active = 1,
         password = 'UDKPQUU51M' )
 
@@ -491,7 +551,8 @@ def run():
         username = 'henryhunt1992@yahoo.com',
         email = 'henryhunt1992@yahoo.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'HENRY',
+        last_name = 'HUNT',
         is_active = 1,
         password = 'AP44CWKV9H' )
 
@@ -499,7 +560,8 @@ def run():
         username = 'liujun1992@msn.com',
         email = 'liujun1992@msn.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'LIU',
+        last_name = 'JUN',
         is_active = 1,
         password = 'EKOFVIGF7O' )
 
@@ -507,7 +569,8 @@ def run():
         username = 'zhangzhanpeng1992@hotmail.com',
         email = 'zhangzhanpeng1992@hotmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'ZHANG',
+        last_name = 'ZHANPENG',
         is_active = 1,
         password = '4FVQ5SSW5A' )
 
@@ -515,7 +578,8 @@ def run():
         username = 'davidchapman1989@msn.com',
         email = 'davidchapman1989@msn.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'DAVID',
+        last_name = 'CHAPMAN',
         is_active = 1,
         password = 'UFWSM2I2HD' )
 
@@ -523,7 +587,8 @@ def run():
         username = 'qinyuwei2011@hotmail.com',
         email = 'qinyuwei2011@hotmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'QIN',
+        last_name = 'YUWEI',
         is_active = 1,
         password = 'KVWJNZFR0H' )
 
@@ -531,7 +596,8 @@ def run():
         username = 'dennispalmer1992@yahoo.com',
         email = 'dennispalmer1992@yahoo.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'DENNIS',
+        last_name = 'PALMER',
         is_active = 1,
         password = 'RPPY55MX0M' )
 
@@ -539,7 +605,8 @@ def run():
         username = 'krupeshandhak1991@yahoo.com',
         email = 'krupeshandhak1991@yahoo.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'KRUPESH',
+        last_name = 'ANDHAK',
         is_active = 1,
         password = 'R0UHB8XM0Z' )
 
@@ -547,7 +614,8 @@ def run():
         username = 'leeyijia1989@gmail.com',
         email = 'leeyijia1989@gmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'LEE',
+        last_name = 'YI JIA',
         is_active = 1,
         password = 'UXKF81IWDB' )
 
@@ -555,7 +623,8 @@ def run():
         username = 'davidhall1992@yahoo.com',
         email = 'davidhall1992@yahoo.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'DAVID',
+        last_name = 'HALL',
         is_active = 1,
         password = 'M7FKT0H5N1' )
 
@@ -563,7 +632,8 @@ def run():
         username = 'seahwengfai1990@yahoo.com',
         email = 'seahwengfai1990@yahoo.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'SEAH',
+        last_name = 'WENG FAI',
         is_active = 1,
         password = 'JY5P9T5JZ0' )
 
@@ -571,7 +641,8 @@ def run():
         username = 'shentianyi1991@msn.com',
         email = 'shentianyi1991@msn.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'SHEN',
+        last_name = 'TIANYI',
         is_active = 1,
         password = 'I8I5PHV2MH' )
 
@@ -579,7 +650,8 @@ def run():
         username = 'wenna1990@msn.com',
         email = 'wenna1990@msn.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'WEN',
+        last_name = 'NA',
         is_active = 1,
         password = '3X5JDFMR4Q' )
 
@@ -587,7 +659,8 @@ def run():
         username = 'liulinxi1991@yahoo.com',
         email = 'liulinxi1991@yahoo.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'LIU',
+        last_name = 'LINXI',
         is_active = 1,
         password = 'MFCJ0V1LM4' )
 
@@ -595,7 +668,8 @@ def run():
         username = 'dingweixiang1990@yahoo.com',
         email = 'dingweixiang1990@yahoo.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'DING',
+        last_name = 'WEI XIANG',
         is_active = 1,
         password = 'PTVQUOTI0D' )
 
@@ -603,7 +677,8 @@ def run():
         username = 'chewsoennam1989@msn.com',
         email = 'chewsoennam1989@msn.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'CHEW',
+        last_name = 'SOEN NAM',
         is_active = 1,
         password = 'GPOOHEZWKO' )
 
@@ -611,7 +686,8 @@ def run():
         username = 'irisbrown1992@hotmail.com',
         email = 'irisbrown1992@hotmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'IRIS',
+        last_name = 'BROWN',
         is_active = 1,
         password = '0BQZXKZ0SN' )
 
@@ -619,7 +695,8 @@ def run():
         username = 'kenowen2011@yahoo.com',
         email = 'kenowen2011@yahoo.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'KEN',
+        last_name = 'OWEN',
         is_active = 1,
         password = 'Q9IIC4U9FD' )
 
@@ -627,7 +704,8 @@ def run():
         username = 'zhangyuzhao1990@gmail.com',
         email = 'zhangyuzhao1990@gmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'ZHANG',
+        last_name = 'YUZHAO',
         is_active = 1,
         password = 'GWLUV964G3' )
 
@@ -635,7 +713,8 @@ def run():
         username = 'geduo2010@yahoo.com',
         email = 'geduo2010@yahoo.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'GE',
+        last_name = 'DUO',
         is_active = 1,
         password = 'HP1VJTS0AG' )
 
@@ -643,7 +722,8 @@ def run():
         username = 'huangxuanti1992@msn.com',
         email = 'huangxuanti1992@msn.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'HUANG',
+        last_name = 'XUANTI',
         is_active = 1,
         password = 'F26V0B2CSL' )
 
@@ -651,7 +731,8 @@ def run():
         username = 'lisasmith2011@msn.com',
         email = 'lisasmith2011@msn.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'LISA',
+        last_name = 'SMITH',
         is_active = 1,
         password = 'RK0RUDAI4P' )
 
@@ -659,7 +740,8 @@ def run():
         username = 'choyjianmin1991@gmail.com',
         email = 'choyjianmin1991@gmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'CHOY',
+        last_name = 'JIAN MIN',
         is_active = 1,
         password = 'VALG7VDRVE' )
 
@@ -667,7 +749,8 @@ def run():
         username = 'ngyongming2011@yahoo.com',
         email = 'ngyongming2011@yahoo.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'NG',
+        last_name = 'YONG MING',
         is_active = 1,
         password = 'JZJYQNVUUA' )
 
@@ -675,7 +758,8 @@ def run():
         username = 'zhengnana1991@gmail.com',
         email = 'zhengnana1991@gmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'ZHENG',
+        last_name = 'NANA',
         is_active = 1,
         password = '5BGBM4LJAI' )
 
@@ -683,7 +767,8 @@ def run():
         username = 'zhaoyang1989@yahoo.com',
         email = 'zhaoyang1989@yahoo.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'ZHAO',
+        last_name = 'YANG',
         is_active = 1,
         password = '9TC0YYUPH2' )
 
@@ -691,7 +776,8 @@ def run():
         username = 'nehalkanwat1989@gmail.com',
         email = 'nehalkanwat1989@gmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'NEHAL',
+        last_name = 'KANWAT',
         is_active = 1,
         password = 'S8RPZASEYW' )
 
@@ -699,7 +785,8 @@ def run():
         username = 'ngyanfen2010@msn.com',
         email = 'ngyanfen2010@msn.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'NG',
+        last_name = 'YAN FEN',
         is_active = 1,
         password = 'XH7YAVE2E4' )
 
@@ -707,7 +794,8 @@ def run():
         username = 'angjiayi1990@hotmail.com',
         email = 'angjiayi1990@hotmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'ANG',
+        last_name = 'JIA YI',
         is_active = 1,
         password = 'Y7ZKDZDPM6' )
 
@@ -715,7 +803,8 @@ def run():
         username = 'chnghuiling1992@gmail.com',
         email = 'chnghuiling1992@gmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'CHNG',
+        last_name = 'HUI LING',
         is_active = 1,
         password = 'EUTQHCYQ15' )
 
@@ -723,7 +812,8 @@ def run():
         username = 'tanweisheng1989@gmail.com',
         email = 'tanweisheng1989@gmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'TAN',
+        last_name = 'WEI SHENG',
         is_active = 1,
         password = '06WKBECG32' )
 
@@ -731,7 +821,8 @@ def run():
         username = 'liewlienler2010@yahoo.com',
         email = 'liewlienler2010@yahoo.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'LIEW',
+        last_name = 'LIEN LER',
         is_active = 1,
         password = '285IIF5S0D' )
 
@@ -739,7 +830,8 @@ def run():
         username = 'ngookaiting1991@yahoo.com',
         email = 'ngookaiting1991@yahoo.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'NGOO',
+        last_name = 'KAI TING',
         is_active = 1,
         password = 'MPWAXKQ2SX' )
 
@@ -747,7 +839,8 @@ def run():
         username = 'liujun1989@msn.com',
         email = 'liujun1989@msn.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'LIU',
+        last_name = 'JUN',
         is_active = 1,
         password = 'ZIPFQ4XMIM' )
 
@@ -755,7 +848,8 @@ def run():
         username = 'shenwanting2011@yahoo.com',
         email = 'shenwanting2011@yahoo.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'SHEN',
+        last_name = 'WANTING',
         is_active = 1,
         password = 'GLJ1SLMHZR' )
 
@@ -763,7 +857,8 @@ def run():
         username = 'zhangcong2010@hotmail.com',
         email = 'zhangcong2010@hotmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'ZHANG',
+        last_name = 'CONG',
         is_active = 1,
         password = '6EWQGSHQO2' )
 
@@ -771,7 +866,8 @@ def run():
         username = 'subramaniamghantasala2011@msn.com',
         email = 'subramaniamghantasala2011@msn.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'SUBRAMANIAM',
+        last_name = 'GHANTASALA',
         is_active = 1,
         password = 'VITD02AVAO' )
 
@@ -779,7 +875,8 @@ def run():
         username = 'tsohuilin1989@msn.com',
         email = 'tsohuilin1989@msn.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'TSO',
+        last_name = 'HUI LIN',
         is_active = 1,
         password = 'I5HRZ0CMWY' )
 
@@ -787,7 +884,8 @@ def run():
         username = 'chiaweiguo1990@hotmail.com',
         email = 'chiaweiguo1990@hotmail.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'CHIA',
+        last_name = 'WEI GUO',
         is_active = 1,
         password = 'BU031QI15W' )
 
@@ -795,7 +893,8 @@ def run():
         username = 'liuyiyang1992@msn.com',
         email = 'liuyiyang1992@msn.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'LIU',
+        last_name = 'YIYANG',
         is_active = 1,
         password = '025Q0QAYFU' )
 
@@ -803,7 +902,8 @@ def run():
         username = 'liuzhencai1990@msn.com',
         email = 'liuzhencai1990@msn.com',
         is_superuser = 0,
-        first_name = '',
+        first_name = 'LIU',
+        last_name = 'ZHENCAI',
         is_active = 1,
         password = '62SFR3MRI3' )
 
@@ -910,9 +1010,10 @@ def run():
     user97.save()
     user98.save()
     user99.save()
-    print "sdfjldh"
+    print("sdfjldh")
 
 
 
-print "RUN"
-run()
+print("RUN")
+# DON'T PUT RUN HERE OR IT WILL INSERT TWICE
+# run()
