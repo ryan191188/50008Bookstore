@@ -96,7 +96,11 @@ mysql> exit
 Bye
 ```
 
-3. 
+3. Load initial user data to auth_user table
+(not very sure if auth_user table is created already)
+```
+> python manage.py runscript users
+```
 
 4. Create tables and load initial data (through SQL scripts)
 
@@ -124,6 +128,11 @@ is_active tinyint(1) NOT NULL,
 date_joined datetime(6) NOT NULL,
 PRIMARY KEY (id),
 UNIQUE (username));
+```
+
+2. Books Table
+```sql
+
 ```
 
 
