@@ -3,9 +3,9 @@ Web application with a database backend using Django.
 
 ```
 Group Members:
-Dily 100
+Lee Peck Fern, Dily 1001645	
 Runner 100
-So Young 100
+Won So Young 100607
 Nam 100
 Ryan 100
 ```
