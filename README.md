@@ -199,3 +199,13 @@ FOREIGN KEY (orderDate) REFERENCES myapp_feedback(orderDate) ON DELETE CASCADE O
 CHECK (loginName <> userBeingRated),
 CHECK (score = 0 or score = 1 or score = 2))
 ```
+
+## Summary of Features
+
+- Registration
+- Ordering
+- User Records (Account info, orders, feedbacks and usefulness ratings)
+- Arrival of new books
+- Arrival of more copies
+- Feedback Recordings
+- Usefulness Ratings
