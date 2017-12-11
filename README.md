@@ -12,7 +12,7 @@ Ryan 100
 
 ## ER Diagram
 <br>
-<img height = "700" src="https://github.com/leepeckfern/50008Bookstore/blob/ryan_sql/erdplus-diagram.jpg"/>
+<img height = "700" src="https://github.com/leepeckfern/50008Bookstore/blob/ryan_sql/ERDdiag.jpg"/>
 <br>
 
 ## Preparing computer
