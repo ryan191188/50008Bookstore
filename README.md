@@ -383,3 +383,38 @@ VALUES ('%s','%s','%s','%s')"%(username,score,userBeingRated,ISBN13)
 
 ## Book Browsing
 
+The web application has a search feature which enables users to search books based on the following attributes:
+
+- Authors
+- Title
+- Publisher
+- Subject
+
+The search feature also involves ordering the results by year (default) or by the average score of the feedbacks
+
+```python
+def search(request):
+    args ={}
+    q = '''SELECT myapp_book.*,AVG(myapp_feedback.score) 
+    FROM myapp_book,myapp_feedback 
+    WHERE myapp_book.ISBN13 = myapp_feedback.ISBN13'''
+    
+    for key in request.GET.keys():
+        print (key,":",request.GET[key])
+    
+        
+        
+        if request.GET[key] != '' and key!='sortby':
+            q += ' AND ' + key + ' LIKE ' + "'%" + (request.GET[key]) + "%'"
+    q+=' GROUP BY myapp_book.ISBN13 '
+    if 'sortby' in request.GET:
+        q+= ' ORDER BY ' + (request.GET['sortby'] if request.GET['sortby'] == 'year' else 'AVG(myapp_feedback.score)') + ' DESC'
+    print(q)
+    cursor = connection.cursor()
+    cursor.execute(q)
+    
+    row = cursor.fetchall()
+    args['results']=row
+    
+    return render(request, 'search.html', args)
+```
