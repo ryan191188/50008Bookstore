@@ -418,3 +418,76 @@ def search(request):
     
     return render(request, 'search.html', args)
 ```
+
+## Top n most useful feedbacks
+
+For a given book, a user is able to display the top n most useful feedbacks. The usefulness of a feedback is defined as its average usefulness score.
+
+When the user selects a number `n` to be displayed, the following SQL query is executed to retrieve the feedbacks
+
+```sql
+select myapp_feedback.*
+From myapp_feedback F, 
+(select T.userBeingrated,T.ISBN13,avg(T.score)
+from (select R.* From myapp_feedback F, myapp_usefulness R
+Where F.ISBN13 = R.ISBN13) as T
+where T.ISBN13 = '%s'
+group by T.userBeingRated
+ORDER BY avg(T.score)
+DESC) as T2
+where F.loginName = T2.userBeingRated
+And F.ISBN13 = T2.ISBN13
+limit '%s' "%(ISBN13,n)
+```
+
+## Book Recommendation
+
+Once a user has purchased a book, there will be a list of recommended titles to the user based on other users who have purchased the same book. Ordered by the most popular book (with the highest sale count).
+
+Book Recommendation will only appear after user has ordered a book.
+
+```sql
+SELECT ISBN13 FROM myapp_orders
+WHERE loginName IN
+(SELECT b2.loginName 
+FROM myapp_orders b1, myapp_orders b2
+WHERE b1.ISBN13 = b2.ISBN13
+AND b1.loginName <> b2.loginName
+AND b1.loginName = '%s'
+AND b1.ISBN13 = '%s')
+AND ISBN13 <> '%s'
+GROUP BY ISBN13
+ORDER BY COUNT(ISBN13) DESC; "%(username,ISBN13,ISBN13)
+```
+
+## Book Statistics (every month)
+- top m most popular books
+- top m most popular authors
+- top m most popular publishers
+
+The following SQL query is used to display the list of m most popular books:
+```sql
+SELECT ISBN13,title,authors FROM myapp_book WHERE ISBN13 IN (SELECT ISBN13 
+FROM (SELECT ISBN13, count(*) AS num 
+FROM myapp_orders WHERE orderDate LIKE '%s'  
+GROUP BY ISBN13 ORDER BY num DESC) T);"%(date)
+```
+
+The following SQL query is used to display the list of m most popular authors:
+```sql
+SELECT b.authors, count(*) AS num FROM myapp_book b, myapp_orders o 
+WHERE b.ISBN13 = o.ISBN13
+AND orderDate LIKE '%s'GROUP BY b.author 
+ORDER BY num DESC;"%(date)  
+```
+
+The following SQL query is used to display the list of m most popular publishers:
+```sql
+SELECT b.publisher, count(*) AS num FROM myapp_book b, myapp_orders o 
+WHERE b.ISBN13 = o.ISBN13
+AND orderDate LIKE '%s' 
+GROUP BY b.publisher 
+ORDER BY num DESC;"%(date)
+```
+
+
