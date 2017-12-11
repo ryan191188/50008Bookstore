@@ -209,3 +209,9 @@ CHECK (score = 0 or score = 1 or score = 2))
 - Arrival of more copies
 - Feedback Recordings
 - Usefulness Ratings
+- Book Browsing
+- Top n most useful feedbacks
+- Book Recommendation
+- Statistics (m most popular books, authors publishers)
+
+## Registration
