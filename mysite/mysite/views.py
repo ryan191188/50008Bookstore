@@ -239,16 +239,14 @@ def books(request):
     return render(request, 'books/book_details.html',args)
 
 def userdata(request):
-    last_name_sep = request.user.replace(' ', '%')
-    if not request.user.first_name.lower() + last_name_sep.lower() == request.path.split('/')[2]:
+    if not request.user.username == request.path.split('/')[2]:
         raise PermissionDenied('NOT LOGGED IN')
     args={}
     return render(request, 'users.html',args)
 
 @login_required
 def userorders(request):
-    last_name_sep = request.user.replace(' ', '%')
-    if not request.user.first_name.lower() + last_name_sep.lower() == request.path.split('/')[2]:
+    if not request.user.username == request.path.split('/')[2]:
         raise PermissionDenied('NOT LOGGED IN')
     args={}
 
@@ -265,8 +263,7 @@ def userorders(request):
 
 @login_required
 def userfeedback(request):
-    last_name_sep = request.user.replace(' ', '%')
-    if not request.user.first_name.lower() + last_name_sep.lower() == request.path.split('/')[2]:
+    if not request.user.username == request.path.split('/')[2]:
         raise PermissionDenied('NOT LOGGED IN')
     args={}
 
@@ -285,8 +282,7 @@ def userfeedback(request):
 
 @login_required
 def userratings(request):
-    last_name_sep = request.user.replace(' ', '%')
-    if not request.user.first_name.lower() + last_name_sep.lower() == request.path.split('/')[2]:
+    if not request.user.username == request.path.split('/')[2]:
         raise PermissionDenied('NOT LOGGED IN')
     args={}    
     q = "SELECT t1.*,t2.feedbackText, t3.title "\
