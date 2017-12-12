@@ -80,7 +80,7 @@ def search(request):
     #context = {"results": (('Photoshop Elements 9: The Missing Manual', 'paperback', '640', 'English', 'Barbara Brundage', 'Pogue Press', 'Science', '2010', '1449389678', '978-1449389673', 40),('Where Good Ideas Come From: The Natural History of Innovation', 'hardcover', '336', 'English', 'Steven Johnson', 'Riverhead Hardcover', 'Biology', '2010', '1594487715', '978-1594487712', 46))} #example results
     row = cursor.fetchall()
     args['results']=row
-    print row
+    print(row)
     return render(request, 'search.html', args)
     #return row
 
@@ -130,19 +130,19 @@ def books(request):
     if request.method =="POST":
         if 'orderbutton' in request.POST:
             quantity = request.POST['quantity']
-            print quantity
+            print(quantity)
             q= "INSERT INTO myapp_orders VALUES ('" \
                 + request.user.username + "', '" + ISBN13 + "', " + quantity + ", NOW() )"
-            print q
+            print(q)
             cursor = connection.cursor()
             cursor.execute(q)
         elif "bookRatingbutton"in request.POST:
             score = request.POST['BookRating']
-            print score
+            print(score)
             q= "INSERT INTO myapp_feedback VALUES ('" \
                 + request.user.username + "', '" + ISBN13 + "', " +  score \
                 + ", ' " + request.POST['comments'] + "' , "+ " CURDATE() )"
-            print q
+            print(q)
             cursor = connection.cursor()
             try:
                 cursor.execute(q)
@@ -163,7 +163,7 @@ def books(request):
             q= "INSERT INTO myapp_usefulness (loginName,userBeingRated,ISBN13,score)VALUES ('" \
                 + request.user.username + "', '" + request.POST[str(rating)] + "', '" +  ISBN13 \
                 + "', " + str(rating) + ")"
-            print q
+            print(q)
             cursor = connection.cursor()
             try:
                 cursor.execute(q)
@@ -206,7 +206,7 @@ def books(request):
     #context = {"results": (('Photoshop Elements 9: The Missing Manual', 'paperback', '640', 'English', 'Barbara Brundage', 'Pogue Press', 'Science', '2010', '1449389678', '978-1449389673', 40),('Where Good Ideas Come From: The Natural History of Innovation', 'hardcover', '336', 'English', 'Steven Johnson', 'Riverhead Hardcover', 'Biology', '2010', '1594487715', '978-1594487712', 46))} #example results
     row = cursor.fetchall()
     args['feedback']= row
-    print row
+    print(row)
  
     q = "SELECT title,ISBN13,COUNT(ISBN13) FROM myapp_orders NATURAL JOIN myapp_book " \
         + "WHERE loginName IN " \
@@ -239,14 +239,16 @@ def books(request):
     return render(request, 'books/book_details.html',args)
 
 def userdata(request):
-    if not request.user.username==request.path.split('/')[2]:
+    last_name_sep = request.user.replace(' ', '%')
+    if not request.user.first_name.lower() + last_name_sep.lower() == request.path.split('/')[2]:
         raise PermissionDenied('NOT LOGGED IN')
     args={}
     return render(request, 'users.html',args)
 
 @login_required
 def userorders(request):
-    if not request.user.username==request.path.split('/')[2]:
+    last_name_sep = request.user.replace(' ', '%')
+    if not request.user.first_name.lower() + last_name_sep.lower() == request.path.split('/')[2]:
         raise PermissionDenied('NOT LOGGED IN')
     args={}
 
@@ -257,13 +259,14 @@ def userorders(request):
     cursor.execute(q)
     #context = {"results": (('Photoshop Elements 9: The Missing Manual', 'paperback', '640', 'English', 'Barbara Brundage', 'Pogue Press', 'Science', '2010', '1449389678', '978-1449389673', 40),('Where Good Ideas Come From: The Natural History of Innovation', 'hardcover', '336', 'English', 'Steven Johnson', 'Riverhead Hardcover', 'Biology', '2010', '1594487715', '978-1594487712', 46))} #example results
     row = cursor.fetchall()
-    print row
+    print(row)
     args['results'] = row
     return render(request, 'user_orders.html',args)
 
 @login_required
 def userfeedback(request):
-    if not request.user.username==request.path.split('/')[2]:
+    last_name_sep = request.user.replace(' ', '%')
+    if not request.user.first_name.lower() + last_name_sep.lower() == request.path.split('/')[2]:
         raise PermissionDenied('NOT LOGGED IN')
     args={}
 
@@ -275,14 +278,15 @@ def userfeedback(request):
     cursor = connection.cursor()
     cursor.execute(q)
     row = cursor.fetchall()
-    print row
+    print(row)
 
     args['results'] = row
     return render(request, 'user_feedback.html',args)
 
 @login_required
 def userratings(request):
-    if not request.user.username==request.path.split('/')[2]:
+    last_name_sep = request.user.replace(' ', '%')
+    if not request.user.first_name.lower() + last_name_sep.lower() == request.path.split('/')[2]:
         raise PermissionDenied('NOT LOGGED IN')
     args={}    
     q = "SELECT t1.*,t2.feedbackText, t3.title "\
@@ -296,7 +300,7 @@ def userratings(request):
     cursor = connection.cursor()
     cursor.execute(q)
     row = cursor.fetchall()
-    print row
+    print(row)
     args['results']=row
     return render(request, 'user_ratings.html',args)
 
