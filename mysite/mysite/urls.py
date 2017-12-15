@@ -25,6 +25,8 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from mysite import views as core_views
+from django.conf import settings
+from django.conf.urls.static import static
 #from myapp import views as book_views
 
 
@@ -59,6 +61,8 @@ urlpatterns = [
                url(r'^admin/', admin.site.urls),
 
                #url(r'^bookstore/', include('myapp.urls')),
+
+               url(r'^$', core_views.index, name = 'index'),
                
                url(r'^accounts/signup/',
                    core_views.signup, 
@@ -96,3 +100,6 @@ urlpatterns = [
        core_views.statistics,
        name = 'statistics')      
                ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

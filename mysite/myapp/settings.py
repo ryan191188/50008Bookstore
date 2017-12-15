@@ -82,7 +82,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'bookstoreproject',
         'USER': 'root',
-        'PASSWORD': 'ryan',
+        'PASSWORD': 'password',
         'HOST': '',
     }
 

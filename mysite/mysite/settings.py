@@ -128,8 +128,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = "/mysite/mysite/static/"
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "mysite", "static"),
+    )
+
 LOGIN_REDIRECT_URL = '/loginSuccess'
 
-#AUTH_USER_MODEL = 'myapp.User'
 
-#AUTHENTICATION_BACKENDS = ('myapp.backend.UserAuthBackend',)
