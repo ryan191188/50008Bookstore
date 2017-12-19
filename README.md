@@ -4,10 +4,10 @@ Web application with a database backend using Django.
 ```
 Group Members:
 Lee Peck Fern, Dily 1001645	
-Runner 100
-Won So Young 100607
-Nam 100
-Ryan 100
+Lim Ying Jie 1001753
+Won So Young 1001607
+Nguyen Hoang Nam 1001797
+Goh Zhong Lon Ryan 1001763
 ```
 
 ## ER Diagram
