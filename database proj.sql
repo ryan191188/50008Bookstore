@@ -58,14 +58,16 @@ CHECK (score >= 0 and score <= 10))
 
 
 
-CREATE TABLE UsefulnessRating (
-loginName VARCHAR(32),
+CREATE TABLE myapp_usefulness (
+loginName VARCHAR(64),
 score INT NOT NULL,
-userBeingRated VARCHAR(32),
-PRIMARY KEY (loginName)
-FOREIGN KEY (loginName) REFERENCES User(loginName),
-FOREIGN KEY (userBeingRated) REFERENCES Feedback(loginName))
-CHECK (loginName <> userBeingRated)
+userBeingRated VARCHAR(64),
+ISBN13 CHAR(14),
+PRIMARY KEY (loginName, userBeingRated, ISBN13),
+FOREIGN KEY (loginName) REFERENCES auth_user(username),
+FOREIGN KEY (userBeingRated) REFERENCES myapp_feedback(loginName),
+FOREIGN KEY (ISBN13) REFERENCES myapp_feedback(ISBN13),
+CHECK (loginName <> userBeingRated),
 CHECK (score = 0 or score = 1 or score = 2))
 
 

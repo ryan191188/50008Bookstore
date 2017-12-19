@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'myapp',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -80,7 +80,7 @@ DATABASES = {
         #'NAME': os.path.join(BASE_DIR, 'db.mysql'),
         'NAME': 'bookstoreproject',
         'USER': 'root',
-        'PASSWORD': 'ryan',
+        'PASSWORD': 'password',
         'HOST': '',
     }
 
@@ -128,7 +128,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = '/search'
+STATIC_ROOT = "/mysite/mysite/static/"
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "mysite", "static"),
+    )
+
+LOGIN_REDIRECT_URL = '/loginSuccess'
+
 
 #AUTH_USER_MODEL = 'myapp.User'
 

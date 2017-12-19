@@ -25,7 +25,9 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from mysite import views as core_views
-from myapp import views as book_views
+from django.conf import settings
+from django.conf.urls.static import static
+#from myapp import views as book_views
 
 
 urlpatterns = [
@@ -47,6 +49,9 @@ urlpatterns = [
                    'template_name': 'logout.html'
                    },
                    name='logout'),
+
+               url(r'^loginSuccess/',
+                   core_views.loginSuccess, name='loginSuccess'),
                
 
 	    #    url(r'^accounts/order/',
@@ -56,10 +61,12 @@ urlpatterns = [
                url(r'^admin/', admin.site.urls),
 
                #url(r'^bookstore/', include('myapp.urls')),
+
+               url(r'^$', core_views.index, name = 'index'),
                
                url(r'^accounts/signup/',
                    core_views.signup, 
-		   name='signup'),
+		                name='signup'),
 
                url(r'^search/',
                    core_views.search, 
@@ -69,10 +76,6 @@ urlpatterns = [
 		   core_views.userdata,
 		   name = 'user'),
 
-		   url(r'^user/.+/orders',
-		   core_views.userorders,
-		   name = 'userorders'), 
-
 		   url(r'^user/.+/feedback',
 		   core_views.userfeedback,
 		   name = 'userfeedback'),
@@ -81,6 +84,9 @@ urlpatterns = [
 		   core_views.userratings,
 		   name = 'userratings'),
 
+       url(r'^user/.+/orders',
+       core_views.userorders,
+       name = 'userorders'),
 
 		   url(r'^newbook',
 		   core_views.newbook,
@@ -88,5 +94,12 @@ urlpatterns = [
 
 		   url(r'^arrivebook',
 		   core_views.arrivebook,
-		   name = 'arrivebook')         
+		   name = 'arrivebook'),
+
+       url(r'^statistics',
+       core_views.statistics,
+       name = 'statistics')      
                ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

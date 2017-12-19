@@ -1,4 +1,4 @@
-INSERT INTO FeedbackOnBook VALUES
+INSERT INTO myapp_feedback VALUES
 ('jennybeckham1992@gmail.com', '978-0201531817', 7, 'Not bad', '2001-03-25'),
 ('shenwanting2011@yahoo.com', '978-0073513157', 7, 'Average', '2006-01-13'),
 ('nehalkanwat1989@gmail.com', '978-0446695190', 8, 'This book is amazing', '2013-06-07'),

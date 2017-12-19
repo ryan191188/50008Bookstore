@@ -1,0 +1,84 @@
+<h2>Search</h2>
+<form class="form-horizontal">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Search</legend>
+
+<!-- Search input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="authors">Authors</label>
+  <div class="col-md-4">
+    <input id="authors" name="authors" type="search" placeholder="authors" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Search input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="title">Title</label>
+  <div class="col-md-4">
+    <input id="title" name="title" type="search" placeholder="title" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Search input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="publisher">Publisher</label>
+  <div class="col-md-4">
+    <input id="publisher" name="publisher" type="search" placeholder="publisher" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Search input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="subject">Subject</label>
+  <div class="col-md-4">
+    <input id="subject" name="subject" type="search" placeholder="subject" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="sortby">Sort By</label>
+  <div class="col-md-4">
+    <select id="sortby" name="sortby" class="form-control">
+      <option value="year">Year</option>
+      <option value="score">Score</option>
+    </select>
+  </div>
+</div>
+
+<br>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="searchbutton"></label>
+  <div class="col-md-4">
+    <button id="searchbutton" name="searchbutton" class="btn btn-primary">Search</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+<h2>Search Results</h2>
+{% if results %}
+  <ol>
+  {% for book in results %}
+  <li>
+	<a href = "../books/{{book.9}}" >{{ book.0 }}</a><br>  <! TITLE>		
+	{{ book.4 }}<br>  <! AUTHOR>   
+	{{ book.5 }}<br>  <! PUBLISHER>
+	{{ book.6 }}<br>  <! SUBJECT>
+	{{ book.7 }}<br>  <! YEAR>
+  Average Rating: {{book.11}}
+<!-- QUERY LANGUAGE TO GET SCORE BY REFERENCING ANOTHER SUBTABLE -->
+    
+ </li>
+  {% endfor %}
+  </ol> 
+{% endif %}
+
