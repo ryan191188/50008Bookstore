@@ -1,17 +1,211 @@
 {% if book %}
-<h2> Books Details</h2>
+{% for b in book %}
+	<font size=6><b> {{b.0}}</b></font><br>
+	Cover type: {{b.1}}<br>
+	Pages: {{b.2}}<br>	
+	Language: {{b.3}}<br>
+	Author(s): {{b.4}}<br>
+	Publisher: {{b.5}}<br>
+	Subject: {{b.6}}<br>
+	Year: {{b.7}}<br>
+	ISBN10: {{b.8}}<br>
+	ISBN13: {{b.9}}<br>
+	Available copies: {{b.10}}<br>
+	<br>
+
+
+
+
+
+
+
+
+{% endfor %}
+
+	{% if user.is_authenticated %}
+
+	<form class="form-horizontal" method="post">
+	{% csrf_token %}  <! to check for forgery>
+	<fieldset>
+
+	<!-- Form Name -->
+	<legend><b>Order</b></legend>
+
+	<!-- Text input-->
+	<div class="form-group">
+	  <label class="col-md-4 control-label" for="quantity">Quantity</label>  
+	  <div class="col-md-4">
+	  <input id="quantity" name="quantity" type="number" min=1 max={{book.0.10}} step=1.0 placeholder="quantity" class="form-control input-md" required="">
+	    
+	  </div>
+	</div>
+
+	<div class="form-group">
+	  <label class="col-md-4 control-label" for="orderbutton"></label>
+	  <div class="col-md-4">
+	    <button id="orderbutton" name="orderbutton" class="btn btn-primary">Place Order</button>
+	  </div>
+	</div>
+
+
+	</fieldset>
+	</form>
+	{% endif %}
+
+
+<!-- <h2> Books Details</h2>
 <h4> Title: {{object.title}} </h4><!INSERT QUERY LANGUAGE>
 <p> Writer: {{object.writer}} </p><!INSERT QUERY LANGUAGE>
 <p> Descritption: {{object.descritption}} </p><!INSERT QUERY LANGUAGE>
-<p> Price: {{object.price}} </p><!INSERT QUERY LANGUAGE>
+<p> Price: {{object.price}} </p><!INSERT QUERY LANGUAGE> -->
 
-<h2>Feedback </h2>
-<! feeedback frm query>
+
+
+{% if user.is_authenticated %}
+
+	<form class="form-horizontal" method="post">
+	{% csrf_token %}  <! to check for forgery>
+	<fieldset>
+
+	<!-- Form Name -->
+	<legend><b>Give Feedback</b></legend>
+	Rating
+	<!-- Text input-->
+	<div class="form-group">
+	  <label class="col-md-4 control-label" for="Book Rating"></label>  
+	  <div class="col-md-4">
+	  <input id="BookRating" name="BookRating" type="number" min=0 max=10 step=1.0 placeholder="0-10" class="form-control input-md" required="">
+	    
+	  </div>
+	</div>
+	<!-- Textarea -->
+	<div class="form-group">
+	  <label class="col-md-4 control-label" for="comments">Comments</label>
+	  <div class="col-md-4">                     
+	    <textarea class="form-control" id="comments" name="comments"></textarea>
+	  </div>
+	</div>
+	<div class="form-group">
+	  <label class="col-md-4 control-label" for="bookRatingbutton"></label>
+	  <div class="col-md-4">
+	    <button id="bookRatingbutton" name="bookRatingbutton" class="btn btn-primary">Submit Book Rating</button>
+	  </div>
+	</div>
+
+
+	</fieldset>
+	</form>
+	{% endif %}
+
+
+<h2>Feedbacks </h2>
+{% if feedback %}
+  Feedback(s) on this book:
+  <ol>
+
+  	<form class="form-horizontal" method="post">
+	{% csrf_token %}  <! to check for forgery>	
+	<!-- Text input-->
+	<div class="form-group">
+	  <label class="col-md-4 control-label" for="topn">Topn</label>  
+	  <div class="col-md-4">
+	  <input id="topn" name="topn" type="number" min=1 step=1.0 placeholder="topn" class="form-control input-md" >
+	    
+	  </div>
+	</div>
+
+
+	<div class="form-group">
+	  <label class="col-md-4 control-label" for="topnbutton"></label>
+	  <div class="col-md-4">
+	    <button id="topnbutton" name="topnbutton" class="btn btn-primary">Topn Button</button>
+	  </div>
+	</div>
+</form>
+
+  {% for fb in feedback %}
+  <li> 
+
+	<form class="form-horizontal" method="post">
+	{% csrf_token %}  <! to check for forgery>	
+	<fieldset>
+
+	<!-- <select title={{fb.1}}>  -->
+    {{ fb.3 }}<br>  <! TITLE>
+    User: {{ fb.1 }}<br>
+    Book Rating: {{ fb.2 }}<br>
+    Date: {{ fb.4 }}<br>
+<button name="0" type="submit" value="{{fb.1}}">0</button>
+<button name="1" type="submit" value="{{fb.1}}">1</button>
+<button name="2" type="submit" value="{{fb.1}}">2</button>
+<!-- 
+
+
+
+
+
+	<button name="subject" type="submit" value="fav_HTML">HTML</button>
+    <option value="0"> Select value 0</option>
+        <option value="1"> Select value 1</option>
+            <option value="2"> Select value 2</option>
+
+ --><!-- 
+	<!-- Multiple Radios (inline) -->
+<!-- 	<div class="form-group">
+	  <label class="col-md-4 control-label" for="Usefulness">Usefulness</label>
+	  <div class="col-md-4"> 
+	    <label class="radio-inline" for="Usefulness-0">
+	      <input type="radio" name="Usefulness{{ fb.1 }}" id="Usefulness-0" value="0" checked="checked">
+	      0
+	    </label> 
+	    <label class="radio-inline" for="Usefulness-1">
+	      <input type="radio" name="Usefulness{{ fb.1 }}" id="Usefulness-1" value="1">
+	      1
+	    </label> 
+	    <label class="radio-inline" for="Usefulness-2">
+	      <input type="radio" name="Usefulness{{ fb.1 }}" id="Usefulness-2" value="2">
+	      2
+	    </label>
+
+
+	</fieldset>
+	</form>
+
+
+    <br>        
+    
+    <!-- </select> -->
+
+<!-- QUERY LANGUAGE TO GET SCORE BY REFERENCING ANOTHER SUBTABLE -->
+    
+ </li>
+  {% endfor %}
+  </ol> 
+{% endif %}
+
+
+
+
 
 <h2>Recommendation </h2>
-
+{% if recommendation %}
+  Customers who bought this book also liked:
+  <ol>
+  {% for book in recommendation %}
+  <li> 
+    <a href = "{{book.1}}" >{{ book.0 }}</a><br>  <! TITLE>
+    <br>        
+    
+<!-- QUERY LANGUAGE TO GET SCORE BY REFERENCING ANOTHER SUBTABLE -->
+    
+ </li>
+  {% endfor %}
+  </ol> 
+{% endif %}
 
 {% else %}
 <h2> Book Not Found </h2>
 
 {% endif %}
+
+
