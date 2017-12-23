@@ -2,7 +2,7 @@
 Web application with a database backend using Django.
 
 ```
-Group Members:
+Group Member:
 Lee Peck Fern, Dily 1001645	
 Lim Ying Jie 1001753
 Won So Young 1001607
